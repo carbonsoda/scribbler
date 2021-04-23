@@ -1,6 +1,6 @@
 # Scribbler
 
-*Note: This project is still in very early phase, please checkout the [overview](docs/overview.md) for more details*
+*Note: This project is still in very early phase, please check out the [overview](docs/overview.md) for more details*
 
 ## Contents
 
