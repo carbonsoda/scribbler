@@ -29,7 +29,7 @@ Scribbler lets folks quickly scribble an idea and share it with others via tempo
 ### Progress
 
 - Currently in the project preparation phase
-  - Finished initial mock=ups, basic design-flow, the technologies I'll use, and data schema
+  - Finished initial mockups, basic design-flow, the technologies I'll use, and data schema
   - Acquired all needed API keys
 
 ### Installation
