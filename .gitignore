@@ -1,0 +1,8 @@
+*/node_modules/
+final-project.code-workspace
+
+*/.env
+
+# Temporary
+server
+client
