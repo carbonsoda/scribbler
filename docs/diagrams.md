@@ -15,7 +15,10 @@
 
 ## Desktop view
 
+### Main page
 ![mockup of main page](./images/scribbler-view-main.png)
+
+### User image history page 
 
 ![mockup of user history page](./images/scribbler-view-history.png)
 
