@@ -17,7 +17,7 @@ Scribbler lets folks quickly scribble an idea and share it with others via tempo
 
 Normally you have to first open or install a drawing app, save it locally, and then upload it somewhere. With uploading images, it's not uncommon that once it's on their servers it stays there, even after you delete the message or post. 
 
-I want to streamline the doodle-sharing process, while also giving users control over their data.
+Personally I often scribble on a napkins or sticky-notes when chatting with others, but virtually, it's not as simple. I want to streamline the doodle-sharing process, while also giving users control over their data.
 
 ![mockup of main page](./images/scribbler-view-main.png)
 
