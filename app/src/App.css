@@ -1,0 +1,15 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.navbar {
+  background-color: gray;
+  height: 10%;
+}
+
+.main-page {
+  width: 90%;
+  height: 80%;
+}
