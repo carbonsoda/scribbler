@@ -8,9 +8,7 @@ import './App.css';
 export default function App() {
   return (
     <div className="App">
-      <header>
-        <Navbar />
-      </header>
+      <Navbar />
       <div className="main-page">
         <DrawPanel />
       </div>
