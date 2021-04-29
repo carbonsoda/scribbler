@@ -8,7 +8,7 @@ export default function LoginBtn({ loginState, authLink }) {
 
   return (
     <button className="login-btn" onClick={loginClick}>
-      {loginState ? 'Log in / Sign Up' : 'Log out'}
+      {loginState ? 'Log out' : 'Log in / Sign Up'}
     </button>
   );
 }
