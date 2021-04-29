@@ -1,39 +1,57 @@
 module.exports = {
-  parser: "babel-eslint",
-  plugins: ["jsx-a11y"],
+  env: {
+    browser: true,
+    es2021: true,
+  },
   extends: [
-    "plugin:import/recommended",
-    "plugin:jsx-a11y/recommended",
-    "plugin:prettier/recommended",
-    "react-app",
+    'airbnb',
+    'react-app',
+    'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
+    'plugin:import/recommended',
+    'plugin:jsx-a11y/recommended',
+    'plugin:prettier/recommended',
   ],
+  parser: 'babel-eslint',
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
+    },
+    ecmaVersion: 12,
+    sourceType: 'module',
+  },
+  plugins: ['react', 'jsx-a11y'],
   rules: {
-    "import/no-unresolved": "error",
-    "import/order": [
-      "error",
+    'prettier/prettier': 'warn',
+    'react/jsx-first-prop-new-line': [1, 'multiline'],
+    'react/jsx-max-props-per-line': [1, { maximum: 1, when: 'multiline' }],
+    'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
+    'import/no-unresolved': 'error',
+    'import/order': [
+      'error',
       {
-        alphabetize: { order: "asc" },
+        alphabetize: { order: 'asc' },
         groups: [
-          "builtin",
-          "external",
-          "internal",
-          "parent",
-          "sibling",
-          "index",
+          'builtin',
+          'external',
+          'internal',
+          'parent',
+          'sibling',
+          'index',
         ],
-        "newlines-between": "always",
+        'newlines-between': 'always',
         pathGroups: [
-          { pattern: "react", group: "builtin" },
-          { pattern: "react-dom", group: "builtin" },
+          { pattern: 'react', group: 'builtin' },
+          { pattern: 'react-dom', group: 'builtin' },
         ],
-        pathGroupsExcludedImportTypes: ["builtin"],
+        pathGroupsExcludedImportTypes: ['builtin'],
       },
     ],
   },
   settings: {
-    "import/resolver": {
+    'import/resolver': {
       node: {
-        moduleDirectory: ["node_modules", "src"],
+        moduleDirectory: ['node_modules', 'src'],
       },
     },
   },
