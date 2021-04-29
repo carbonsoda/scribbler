@@ -1,16 +1,15 @@
-import dotenv from "dotenv";
-import pgp from "pg-promise";
+import dotenv from 'dotenv';
+import pgp from 'pg-promise';
 
 const db = initDb();
-
 
 function initDb() {
   let connection;
 
   if (process.env.DATABASE_URL === undefined) {
-    dotenv.config({ path: "../.env" });
+    dotenv.config({ path: '../.env' });
     connection = {
-      user: "postgres",
+      user: 'postgres',
       database: process.env.POSTGRES_DB,
       password: process.env.POSTGRES_PASSWORD,
       port: 5442,

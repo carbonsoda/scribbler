@@ -3,39 +3,40 @@ module.exports = {
     es6: true,
     node: true,
   },
-  parser: "@babel/eslint-parser",
+  parser: '@babel/eslint-parser',
   parserOptions: {
     babelOptions: {
       configFile: `${__dirname}/.babelrc.json`,
     },
   },
   extends: [
-    "eslint:recommended",
-    "plugin:import/recommended",
-    "plugin:prettier/recommended",
+    'eslint:recommended',
+    'airbnb-base',
+    'plugin:import/recommended',
+    'plugin:prettier/recommended',
   ],
   rules: {
-    "no-console": "off",
-    "import/order": [
-      "error",
+    'no-console': 'off',
+    'import/order': [
+      'error',
       {
-        alphabetize: { order: "asc" },
+        alphabetize: { order: 'asc' },
         groups: [
-          "builtin",
-          "external",
-          "internal",
-          "parent",
-          "sibling",
-          "index",
+          'builtin',
+          'external',
+          'internal',
+          'parent',
+          'sibling',
+          'index',
         ],
-        "newlines-between": "always",
+        'newlines-between': 'always',
       },
     ],
   },
   settings: {
-    "import/resolver": {
+    'import/resolver': {
       node: {
-        moduleDirectory: ["node_modules", "src"],
+        moduleDirectory: ['node_modules', 'src'],
       },
     },
   },
