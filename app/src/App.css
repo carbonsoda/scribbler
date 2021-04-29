@@ -7,6 +7,9 @@
 .navbar {
   background-color: gray;
   height: 10%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .main-page {
