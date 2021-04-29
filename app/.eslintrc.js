@@ -23,6 +23,9 @@ module.exports = {
   plugins: ['react', 'jsx-a11y'],
   rules: {
     'prettier/prettier': 'warn',
+    indent: ['error', 2, { ignoredNodes: ['JSXElement *'] }],
+    'react/prop-types': 0,
+    'react/button-has-type': 0,
     'react/jsx-first-prop-new-line': [1, 'multiline'],
     'react/jsx-max-props-per-line': [1, { maximum: 1, when: 'multiline' }],
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
