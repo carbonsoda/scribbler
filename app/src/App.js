@@ -1,5 +1,6 @@
 import React from 'react';
 
+import DrawPanel from './components/DrawPanel';
 import Navbar from './components/navbar/Navbar';
 
 export default function App() {
@@ -8,7 +9,9 @@ export default function App() {
       <header>
         <Navbar />
       </header>
-      Hello!
+      <div className="main-page">
+        <DrawPanel />
+      </div>
     </div>
   );
 }
