@@ -11,9 +11,32 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0 1rem 0 1rem;
+}
+
+.sidebar {
+  border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 25%;
+}
+
+.sidebar>button {
+  width: 90%
 }
 
 .main-page {
-  width: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   height: 80%;
+}
+
+.draw-panel {
+  border: 1px solid blue;
+  width: 60%;
+  height: 100%;
+  padding: 2rem;
 }
