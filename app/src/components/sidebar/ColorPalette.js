@@ -18,7 +18,7 @@ export default function ColorPalette() {
       .catch((e) => console.error(e));
   };
 
-  React.useEffect(() => generatePalette(), []);
+  React.useEffect(() => generatePalette(), [generatePalette]);
 
   return (
     <div className="palette-generator">

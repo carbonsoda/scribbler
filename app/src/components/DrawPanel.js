@@ -5,5 +5,5 @@ export default function DrawPanel() {
     <div className="draw-panel">
       Excalidraw would go here.
     </div>
-  )
+  );
 }

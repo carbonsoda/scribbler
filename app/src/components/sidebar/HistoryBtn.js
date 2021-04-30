@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 export default function HistoryBtn() {
   // TODO: configure react-router to appropiately set up this button, so routes to /history
@@ -6,5 +6,5 @@ export default function HistoryBtn() {
     <button className="history-btn">
       My upload history
     </button>
-  )
+  );
 }
