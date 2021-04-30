@@ -13,7 +13,6 @@ module.exports = {
     'eslint:recommended',
     'airbnb-base',
     'plugin:import/recommended',
-    'plugin:prettier/recommended',
   ],
   rules: {
     'no-console': 'off',
