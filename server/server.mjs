@@ -6,13 +6,12 @@ const app = express();
 const port = process.env.PORT || 4000;
 
 // By @gsong
-process.env?.SERVE_REACT?.toLowerCase() === 'true' &&
-  app.use(
+process.env?.SERVE_REACT?.toLowerCase() === 'true'
+  && app.use(
     express.static('/app', {
       maxAge: '1d',
-      setHeaders: (res, path) =>
-        ['application/json', 'text/html'].includes(mime.lookup(path)) &&
-        res.setHeader('Cache-Control', 'public, max-age=0'),
+      setHeaders: (res, path) => ['application/json', 'text/html'].includes(mime.lookup(path))
+        && res.setHeader('Cache-Control', 'public, max-age=0'),
     }),
   );
 
