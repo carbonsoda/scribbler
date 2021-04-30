@@ -5,12 +5,11 @@ module.exports = {
   },
   extends: [
     'airbnb',
+    'airbnb/hooks',
     'react-app',
     'plugin:react/recommended',
-    'plugin:react-hooks/recommended',
     'plugin:import/recommended',
     'plugin:jsx-a11y/recommended',
-    'plugin:prettier/recommended',
   ],
   parser: 'babel-eslint',
   parserOptions: {
@@ -22,15 +21,21 @@ module.exports = {
   },
   plugins: ['react', 'jsx-a11y'],
   rules: {
-    'prettier/prettier': 'warn',
     'react/jsx-first-prop-new-line': [1, 'multiline'],
-    'react/jsx-max-props-per-line': [1, { maximum: 1, when: 'multiline' }],
-    'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
+    'react/jsx-max-props-per-line': [1, {
+      maximum: 1,
+      when: 'multiline',
+    }],
+    'react/jsx-filename-extension': [1, {
+      extensions: ['.js', '.jsx'],
+    }],
     'import/no-unresolved': 'error',
     'import/order': [
       'error',
       {
-        alphabetize: { order: 'asc' },
+        alphabetize: {
+          order: 'asc',
+        },
         groups: [
           'builtin',
           'external',
@@ -40,9 +45,14 @@ module.exports = {
           'index',
         ],
         'newlines-between': 'always',
-        pathGroups: [
-          { pattern: 'react', group: 'builtin' },
-          { pattern: 'react-dom', group: 'builtin' },
+        pathGroups: [{
+          pattern: 'react',
+          group: 'builtin',
+        },
+        {
+          pattern: 'react-dom',
+          group: 'builtin',
+        },
         ],
         pathGroupsExcludedImportTypes: ['builtin'],
       },
