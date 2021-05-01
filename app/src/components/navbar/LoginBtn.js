@@ -1,14 +1,20 @@
 import React from 'react';
 
-export default function LoginBtn({ loginState, authLink }) {
+export default function LoginBtn({ isLoggedIn, setIsLoggedIn }) {
   const loginClick = (e) => {
     e.preventDefault();
-    // authLink();
+    if (isLoggedIn) {
+      // TODO: implement auth0 log-out
+      setIsLoggedIn(false);
+    } else {
+      // TODO: implement auth0 login
+      setIsLoggedIn(true);
+    }
   };
 
   return (
     <button className="login-btn" onClick={loginClick}>
-      {loginState ? 'Log out' : 'Log in / Sign Up'}
+      {isLoggedIn ? 'Log out' : 'Log in / Sign Up'}
     </button>
   );
 }
