@@ -2,8 +2,8 @@ import React from 'react';
 
 import { Link } from '@reach/router';
 
-import LoginBtn from './LoginBtn';
-import UserIcon from './UserIcon';
+import LoginBtn from './navbar/LoginBtn';
+import UserIcon from './navbar/UserIcon';
 
 export default function Navbar({ isLoggedIn, setIsLoggedIn }) {
   return (

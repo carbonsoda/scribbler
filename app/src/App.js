@@ -4,7 +4,7 @@ import { Router } from '@reach/router';
 
 import History from './History';
 import Mainpage from './Mainpage';
-import Navbar from './components/navbar/Navbar';
+import Navbar from './components/Navbar';
 
 import './App.css';
 
