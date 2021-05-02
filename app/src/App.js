@@ -3,8 +3,8 @@ import React from 'react';
 import { Router } from '@reach/router';
 
 import Navbar from './components/Navbar';
-import History from './routes/HistoryPage';
-import Mainpage from './routes/MainPage';
+import History from './routes/History';
+import Mainpage from './routes/Main';
 
 import './App.css';
 
