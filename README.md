@@ -13,6 +13,7 @@
 Scribbler lets folks quickly scribble an idea and share it with others via temporary link; after 30 minutes, the image is permanently deleted.
 
 ## Technology
+This project uses a PostgreSQL, Express, React, and Node.JS (PERN) stack. It will also use the AWS S3 and Colormind APIs, and be hosted on Heroku.
  
 ### Prerequisites
 
