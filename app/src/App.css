@@ -5,7 +5,7 @@
   row-gap: 1rem;
 }
 
-.navbar {
+nav {
   background-color: gray;
   height: 10%;
   display: flex;
@@ -39,4 +39,10 @@
   width: 60%;
   height: 100%;
   padding: 2rem;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  font-size: 2rem;
 }

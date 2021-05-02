@@ -1,9 +1,11 @@
 import React from 'react';
 
-export default function UserIcon({ iconUrl }) {
+export default function UserIcon({ user }) {
   return (
-    <div className="UserIcon">
-      {iconUrl ? <img src={iconUrl} alt="Current user's icon" /> : ''}
-    </div>
+    <>
+      {user
+        ? <img className="UserIcon" src={user.picture} alt={`${user.name}'s icon`} />
+        : ''}
+    </>
   );
 }
