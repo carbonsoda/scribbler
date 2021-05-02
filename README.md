@@ -13,6 +13,9 @@
 Scribbler lets folks quickly scribble an idea and share it with others via temporary link; after 30 minutes, the image is permanently deleted.
 
 ## Technology
+This project uses a PostgreSQL, Express, React, and Node.JS (PERN) stack. It will also use the AWS S3 and Colormind APIs, and be hosted on Heroku.
+
+## Installation
  
 ### Prerequisites
 
@@ -26,8 +29,7 @@ Use one of these methods:
 - Use [Homebrew](https://docs.brew.sh/Installation) on macOS: `brew install --cask docker`
 - [Follow the instructions on the Docker website](https://www.docker.com/)
 
-Once you've installed Docker Desktop, you'll need to launch the app. On macOS,
-it's located in `/Applications/Docker`.
+Once you've installed Docker Desktop, you'll need to launch the app. On macOS, it's located in `/Applications/Docker`.
 
 #### Node
 
@@ -37,7 +39,7 @@ You'll need to install Node v14 or above. [`nvm`](https://github.com/nvm-sh/nvm)
 
 #### Install NPM Packages
 
-All the required packages can be installed at once using the following command in the root directory:
+All the required packages can be installed using the following command in the root directory:
 ```sh
 npm install
 ```
