@@ -6,10 +6,10 @@ import LoginItems from './navbar/LoginItems';
 
 export default function Navbar() {
   return (
-    <div className="navbar">
+    <nav>
       <h1><Link to="/">Scribbler</Link></h1>
       <Link to="/history">History</Link>
       <LoginItems />
-    </div>
+    </nav>
   );
 }
