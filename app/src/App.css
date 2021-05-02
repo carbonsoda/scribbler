@@ -40,3 +40,9 @@ nav {
   height: 100%;
   padding: 2rem;
 }
+
+.loading {
+  display: flex;
+  align-items: center;
+  font-size: 2rem;
+}
