@@ -2,9 +2,9 @@ import React from 'react';
 
 import { Router } from '@reach/router';
 
-import History from './History';
-import Mainpage from './Mainpage';
-import Navbar from './components/navbar/Navbar';
+import Navbar from './components/Navbar';
+import History from './routes/HistoryPage';
+import Mainpage from './routes/MainPage';
 
 import './App.css';
 

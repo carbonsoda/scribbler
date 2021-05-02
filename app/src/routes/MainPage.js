@@ -1,9 +1,7 @@
 import React from 'react';
 
-import DrawPanel from './components/DrawPanel';
-import Sidebar from './components/Sidebar';
-
-import './App.css';
+import DrawPanel from '../components/DrawPanel';
+import Sidebar from '../components/Sidebar';
 
 export default function Mainpage() {
   return (

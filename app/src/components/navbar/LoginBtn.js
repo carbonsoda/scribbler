@@ -1,14 +1,14 @@
 import React from 'react';
 
-export default function LoginBtn({ loginState, authLink }) {
+export default function LoginBtn({ isAuthenticated, loginUser }) {
   const loginClick = (e) => {
     e.preventDefault();
-    // authLink();
+    loginUser();
   };
 
   return (
     <button className="login-btn" onClick={loginClick}>
-      {loginState ? 'Log out' : 'Log in / Sign Up'}
+      {isAuthenticated ? 'Log out' : 'Log in'}
     </button>
   );
 }
