@@ -9,6 +9,8 @@ export default function DrawPanel() {
     // outputs a dataURL of the png with base64 encoding
     // children[1] = the user's drawing layer, without background
     console.log(canvas.current.canvasContainer.children[1].toDataURL('image/png'));
+    // TODO: pass in a callback that takes this dataURL
+    // where the img is handled then via sidebar btns
   };
 
   return (
