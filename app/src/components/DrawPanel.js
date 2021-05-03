@@ -1,12 +1,11 @@
 import React from 'react';
 
 import CanvasDraw from 'react-canvas-draw';
-
-import ColorPicker from './drawpanel/ColorPicker';
+import { HexColorPicker, HexColorInput } from 'react-colorful';
 
 export default function DrawPanel() {
   const canvas = React.useRef();
-  const brushColor = '#00000080';
+  const [color, setColor] = React.useState('#00000080');
 
   const getImg = () => {
     // outputs a dataURL of the png with base64 encoding
@@ -21,9 +20,10 @@ export default function DrawPanel() {
       <button onClick={() => getImg()}>Load</button>
       <CanvasDraw
         ref={canvas}
-        brushColor={brushColor}
+        brushColor={color}
       />
-      <ColorPicker />
+      <HexColorPicker color={color} onChange={setColor} />
+      <HexColorInput color={color} onChange={setColor} />
     </div>
   );
 }
