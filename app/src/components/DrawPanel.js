@@ -1,17 +1,24 @@
 import React from 'react';
 
 import CanvasDraw from 'react-canvas-draw';
-import { HexColorPicker, HexColorInput } from 'react-colorful';
+import { RgbaColorPicker } from 'react-colorful';
 
 export default function DrawPanel() {
   const canvas = React.useRef();
-  const [color, setColor] = React.useState('#00000080');
+  const [brushColor, setBrushColor] = React.useState('rgba(0,0,0,1)');
+  const [color, setColor] = React.useState({
+    r: 0, b: 0, g: 0, a: 1,
+  });
 
   const getImg = () => {
     // outputs a dataURL of the png with base64 encoding
     // children[1] = the user's drawing layer, without background
     console.log(canvas.current.canvasContainer.children[1].toDataURL('image/png'));
   };
+
+  React.useEffect(() => {
+    setBrushColor(`rgb(${color.r}, ${color.g}, ${color.b}, ${color.a})`);
+  }, [color]);
 
   return (
     <div className="draw-panel">
@@ -20,10 +27,9 @@ export default function DrawPanel() {
       <button onClick={() => getImg()}>Load</button>
       <CanvasDraw
         ref={canvas}
-        brushColor={color}
+        brushColor={brushColor}
       />
-      <HexColorPicker color={color} onChange={setColor} />
-      <HexColorInput color={color} onChange={setColor} />
+      <RgbaColorPicker color={color} onChange={setColor} />
     </div>
   );
 }
