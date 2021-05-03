@@ -44,6 +44,18 @@ All the required packages can be installed using the following command in the ro
 npm install
 ```
 
+#### Set Up React client for `auth0`
+
+1. Copy the app's example environment file
+
+   ```sh
+   cp app/.env.example app/.env
+   ```
+
+2. The `.env` file allows the React app to use Auth0, and requires an Auth0 domain + client-id.
+   - These can be obtained by signing up for an Auth0 account and [Registering a Single-Page Web Application](https://auth0.com/docs/get-started) in order to get these values.
+   - This [graphic](https://images.ctfassets.net/23aumh6u8s0i/1DyyZTcfbJHw577T6K2KZk/a8cabcec991c9ed33910a23836e53b76/auth0-application-settings) from [Auth0's guide](https://auth0.com/blog/complete-guide-to-react-user-authentication/#Connect-React-with-Auth0) may be helpful to locating them. 
+
 #### Set Up `postgres` User Password and Database Name
 
 We need to set up couple pieces of information in order to start a new
@@ -58,8 +70,7 @@ server.
 
 2. You can choose to edit `.env` or just use as-is.
 
-[See the PostgreSQL Docker image documentation for more
-information](https://hub.docker.com/_/postgres).
+[See the PostgreSQL Docker image documentation for more information](https://hub.docker.com/_/postgres).
 
 #### Initialize the Database
 

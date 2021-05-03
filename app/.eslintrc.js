@@ -21,6 +21,8 @@ module.exports = {
   },
   plugins: ['react', 'jsx-a11y'],
   rules: {
+    'react/prop-types': 'off',
+    'react/button-has-type': 'off',
     'react/jsx-first-prop-new-line': [1, 'multiline'],
     'react/jsx-max-props-per-line': [1, {
       maximum: 1,
