@@ -2,6 +2,8 @@ import React from 'react';
 
 import CanvasDraw from 'react-canvas-draw';
 
+import ColorPicker from './drawpanel/ColorPicker';
+
 export default function DrawPanel() {
   const canvas = React.useRef();
 
@@ -20,6 +22,7 @@ export default function DrawPanel() {
         ref={canvas}
         brushColor="rgba(155,12,60,0.7)"
       />
+      <ColorPicker />
     </div>
   );
 }
