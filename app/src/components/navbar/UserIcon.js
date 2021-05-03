@@ -4,7 +4,7 @@ export default function UserIcon({ user }) {
   return (
     <>
       {user
-        ? <img className="UserIcon" src={user.picture} alt={`${user.name}'s icon`} />
+        ? <img className="user-icon" src={user.picture} alt={`${user.name}'s icon`} />
         : ''}
     </>
   );
