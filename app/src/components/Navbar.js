@@ -8,7 +8,6 @@ export default function Navbar() {
   return (
     <nav>
       <h1><Link to="/">Scribbler</Link></h1>
-      <Link to="/history">History</Link>
       <LoginItems />
     </nav>
   );

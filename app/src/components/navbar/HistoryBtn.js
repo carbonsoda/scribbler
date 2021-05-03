@@ -1,10 +1,14 @@
 import React from 'react';
 
-export default function HistoryBtn() {
-  // TODO: configure react-router to appropiately set up this button, so routes to /history
+import { Link } from '@reach/router';
+
+export default function HistoryBtn({ isAuthenticated }) {
+  if (!isAuthenticated) {
+    return <></>;
+  }
   return (
     <button className="history-btn">
-      My upload history
+      <Link to="/history">Upload History</Link>
     </button>
   );
 }

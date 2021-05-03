@@ -19,7 +19,7 @@ export default function LoginItems() {
   };
   return (
     <div className="login-items">
-      <HistoryBtn />
+      <HistoryBtn isAuthenticated={isAuthenticated} />
       <LoginBtn isAuthenticated={isAuthenticated} loginUser={loginUser} />
       <UserIcon user={user} />
     </div>
