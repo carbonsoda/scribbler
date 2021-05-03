@@ -1,9 +1,14 @@
 import React from 'react';
 
 import CanvasDraw from 'react-canvas-draw';
+import { RgbaColorPicker } from 'react-colorful';
 
 export default function DrawPanel() {
   const canvas = React.useRef();
+  const [brushColor, setBrushColor] = React.useState('rgba(0,0,0,1)');
+  const [color, setColor] = React.useState({
+    r: 0, b: 0, g: 0, a: 1,
+  });
 
   const getImg = () => {
     // outputs a dataURL of the png with base64 encoding
@@ -13,6 +18,10 @@ export default function DrawPanel() {
     // where the img is handled then via sidebar btns
   };
 
+  React.useEffect(() => {
+    setBrushColor(`rgb(${color.r}, ${color.g}, ${color.b}, ${color.a})`);
+  }, [color]);
+
   return (
     <div className="draw-panel">
       <button onClick={() => canvas.current.clear()}>Clear</button>
@@ -20,8 +29,9 @@ export default function DrawPanel() {
       <button onClick={() => getImg()}>Load</button>
       <CanvasDraw
         ref={canvas}
-        brushColor="rgba(155,12,60,0.7)"
+        brushColor={brushColor}
       />
+      <RgbaColorPicker color={color} onChange={setColor} />
     </div>
   );
 }
