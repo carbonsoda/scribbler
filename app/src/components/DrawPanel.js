@@ -7,6 +7,8 @@ export default function DrawPanel() {
 
   return (
     <div className="draw-panel">
+      <button onClick={() => canvas.current.clear()}>Clear</button>
+      <button onClick={() => canvas.current.undo()}>Undo</button>
       <CanvasDraw
         ref={canvas}
         brushColor="rgba(155,12,60,0.7)"
