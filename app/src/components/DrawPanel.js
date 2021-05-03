@@ -6,6 +6,7 @@ import ColorPicker from './drawpanel/ColorPicker';
 
 export default function DrawPanel() {
   const canvas = React.useRef();
+  const brushColor = '#00000080';
 
   const getImg = () => {
     // outputs a dataURL of the png with base64 encoding
@@ -20,7 +21,7 @@ export default function DrawPanel() {
       <button onClick={() => getImg()}>Load</button>
       <CanvasDraw
         ref={canvas}
-        brushColor="rgba(155,12,60,0.7)"
+        brushColor={brushColor}
       />
       <ColorPicker />
     </div>
