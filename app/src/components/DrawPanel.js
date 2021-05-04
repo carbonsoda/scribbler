@@ -3,14 +3,13 @@ import React from 'react';
 import CanvasDraw from 'react-canvas-draw';
 import { RgbaColorPicker } from 'react-colorful';
 
+import BrushTools from './drawpanel/BrushTools';
+
 export default function DrawPanel() {
   const canvas = React.useRef();
   const lazyRadius = 20;
   const [brushSize, setBrushSize] = React.useState(10);
   const [brushColor, setBrushColor] = React.useState('rgba(0,0,0,1)');
-  const [color, setColor] = React.useState({
-    r: 0, b: 0, g: 0, a: 1,
-  });
 
   const getImg = () => {
     // outputs a dataURL of the png with base64 encoding
@@ -19,10 +18,6 @@ export default function DrawPanel() {
     // TODO: pass in a callback that takes this dataURL
     // where the img is handled then via sidebar btns
   };
-
-  React.useEffect(() => {
-    setBrushColor(`rgb(${color.r}, ${color.g}, ${color.b}, ${color.a})`);
-  }, [color]);
 
   return (
     <div className="draw-panel">
@@ -35,7 +30,7 @@ export default function DrawPanel() {
         lazyRadius={lazyRadius}
         brushRadius={brushSize}
       />
-      <RgbaColorPicker color={color} onChange={setColor} />
+      <BrushTools onChange={setBrushColor} />
     </div>
   );
 }
