@@ -31,46 +31,39 @@ nav {
   height: 5rem;
 }
 
-.sidebar {
-  border: 1px solid red;
+.loading {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  width: 25%;
-  row-gap: 0.5rem;
-  padding: 0.5rem;
-}
-
-.sidebar>button {
-  width: 90%;
-  font-size: 1rem;
-  line-height: 2rem;
+  font-size: 2rem;
 }
 
 .main-page {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   height: 80%;
 }
 
 .draw-panel {
   border: 1px solid blue;
-  width: 60%;
   height: 100%;
   padding: 2rem;
+}
+
+.canvas-draw {
+  border: 1px solid rgb(48, 48, 53);
+  margin: 2rem 0;
 }
 
 .brush-tools {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
   gap: 1rem;
 }
 
-.loading {
+.img-utils {
   display: flex;
-  align-items: center;
-  font-size: 2rem;
+  justify-content: space-between;
 }

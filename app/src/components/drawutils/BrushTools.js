@@ -19,14 +19,18 @@ export default function BrushTools({ onColorChange, onSizeChange }) {
   return (
     <div className="brush-tools">
       <RgbaColorPicker color={color} onChange={setColor} />
-      <input
-        type="range"
-        name="brush-size"
-        min="5"
-        max="25"
-        value={size}
-        onChange={(e) => setSize(e.target.value)}
-      />
+      <label htmlFor="brush-size">
+        Brush Size
+        <br />
+        <input
+          type="range"
+          id="brush-size"
+          min="5"
+          max="25"
+          value={size}
+          onChange={(e) => setSize(e.target.value)}
+        />
+      </label>
     </div>
   );
 }

@@ -17,12 +17,14 @@ export default function DrawPanel() {
   return (
     <div className="draw-panel">
       <ImgUtils canvas={canvas} />
-      <CanvasDraw
-        ref={canvas}
-        brushColor={brushColor}
-        lazyRadius={lazyRadius}
-        brushRadius={brushSize}
-      />
+      <div className="canvas-draw">
+        <CanvasDraw
+          ref={canvas}
+          brushColor={brushColor}
+          lazyRadius={lazyRadius}
+          brushRadius={brushSize}
+        />
+      </div>
       <BrushTools onColorChange={setBrushColor} onSizeChange={setBrushSize} />
     </div>
   );
