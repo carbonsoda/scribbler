@@ -1,8 +1,8 @@
 import React from 'react';
 
 import CanvasDraw from 'react-canvas-draw';
-import { RgbaColorPicker } from 'react-colorful';
 
+import ImgUtils from './ImgUtils';
 import BrushTools from './drawpanel/BrushTools';
 
 export default function DrawPanel() {
@@ -14,30 +14,9 @@ export default function DrawPanel() {
   const [brushSize, setBrushSize] = React.useState(10);
   const [brushColor, setBrushColor] = React.useState('rgba(0,0,0,1)');
 
-  const getImg = () => {
-    // outputs a dataURL of the png with base64 encoding
-    // children[1] = the user's drawing layer, without background
-    console.log(canvas.current.canvasContainer.children[1].toDataURL('image/png'));
-    // TODO: pass in a callback that takes this dataURL
-    // where the img is handled then via sidebar btns
-  };
-
-  const localDownload = () => {
-    const drawnlayer = canvas.current.canvasContainer.children[1].toDataURL('image/png');
-
-    // src: Ehsan Ahmadi https://stackoverflow.com/a/60719585
-    const downloadLink = document.createElement('a');
-    downloadLink.href = drawnlayer;
-    downloadLink.download = 'scribbled-img.png';
-    downloadLink.click();
-  };
-
   return (
     <div className="draw-panel">
-      <button onClick={() => canvas.current.clear()}>Clear</button>
-      <button onClick={() => canvas.current.undo()}>Undo</button>
-      <button onClick={() => getImg()}>Load</button>
-      <button onClick={() => localDownload()}>Download</button>
+      <ImgUtils canvas={canvas} />
       <CanvasDraw
         ref={canvas}
         brushColor={brushColor}
