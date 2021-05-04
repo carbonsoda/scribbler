@@ -106,8 +106,3 @@ Visit <http://localhost:3000>.
 ```sh
 npm run psql
 ```
-
-## Progress
-
-- All needed API keys were acquired and general planning has been completed; the first two weeks have more details and the following weeks will be adjusted based on progress.
-- Currently working on a [basic version of the front-end](https://github.com/carbonsoda/scribbler/tree/frontend-v1). 
