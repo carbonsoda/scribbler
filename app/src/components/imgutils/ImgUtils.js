@@ -1,7 +1,7 @@
 import React from 'react';
 
-import DownloadBtn from './imgutils/DownloadBtn';
-import ShareBtn from './imgutils/ShareBtn';
+import DownloadBtn from './DownloadBtn';
+import ShareBtn from './ShareBtn';
 
 export default function ImgUtils({ canvas }) {
   const uploadImg = () => {

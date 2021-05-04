@@ -2,8 +2,8 @@ import React from 'react';
 
 import CanvasDraw from 'react-canvas-draw';
 
-import ImgUtils from './ImgUtils';
-import BrushTools from './drawpanel/BrushTools';
+import BrushTools from './drawutils/BrushTools';
+import ImgUtils from './imgutils/ImgUtils';
 
 export default function DrawPanel() {
   const canvas = React.useRef();
