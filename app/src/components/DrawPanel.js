@@ -5,6 +5,8 @@ import { RgbaColorPicker } from 'react-colorful';
 
 export default function DrawPanel() {
   const canvas = React.useRef();
+  const lazyRadius = 20;
+  const [brushSize, setBrushSize] = React.useState(10);
   const [brushColor, setBrushColor] = React.useState('rgba(0,0,0,1)');
   const [color, setColor] = React.useState({
     r: 0, b: 0, g: 0, a: 1,
@@ -30,6 +32,8 @@ export default function DrawPanel() {
       <CanvasDraw
         ref={canvas}
         brushColor={brushColor}
+        lazyRadius={lazyRadius}
+        brushRadius={brushSize}
       />
       <RgbaColorPicker color={color} onChange={setColor} />
     </div>
