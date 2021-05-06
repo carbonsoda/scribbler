@@ -20,7 +20,6 @@ export default function BrushTools({ onColorChange, onSizeChange }) {
 
   return (
     <div className="brush-tools">
-      <RgbaColorPicker color={color} onChange={setColor} />
       <label htmlFor="brush-size">
         Brush Size
         <br />
@@ -33,6 +32,8 @@ export default function BrushTools({ onColorChange, onSizeChange }) {
           onChange={(e) => setSize(e.target.value)}
         />
       </label>
+      <br />
+      <RgbaColorPicker color={color} onChange={setColor} />
       <ColorPalette />
     </div>
   );
