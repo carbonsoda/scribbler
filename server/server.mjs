@@ -1,4 +1,5 @@
 import express from 'express';
+import got from 'got';
 import mime from 'mime-types';
 
 const app = express();
@@ -14,7 +15,16 @@ images.post('/', async (req, res) => {
   res.json({ hi: 'there', imgURL: imgDataURL.length });
 });
 
-app.use('/api/upload', images);
+const colors = express.Router();
+colors.use(express.json());
+app.use('/api/colors', colors);
+
+// generates a color palette from colormind.io
+colors.get('/', async (req, res) => {
+  const { body } = await got.post('http://colormind.io/api/',
+    { json: { model: 'default' }, responseType: 'json' });
+  res.json(body.result);
+});
 
 // By @gsong
 // eslint-disable-next-line no-unused-expressions

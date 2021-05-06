@@ -10,6 +10,12 @@ export const uploadImg = async (imgDataURL) => {
   return response.json();
 };
 
+// Generates a color palette
+export const getColors = async () => {
+  const res = await fetch('/api/colors');
+  return res.json();
+};
+
 export const testPing = async () => {
   const res = await fetch('api/ping');
   return res.json();
