@@ -2,6 +2,8 @@ import React from 'react';
 
 import { RgbaColorPicker } from 'react-colorful';
 
+import ColorPalette from './ColorPalette';
+
 export default function BrushTools({ onColorChange, onSizeChange }) {
   const [color, setColor] = React.useState({
     r: 0, b: 0, g: 0, a: 1,
@@ -31,6 +33,7 @@ export default function BrushTools({ onColorChange, onSizeChange }) {
           onChange={(e) => setSize(e.target.value)}
         />
       </label>
+      <ColorPalette />
     </div>
   );
 }
