@@ -34,7 +34,7 @@ export default function BrushTools({ onColorChange, onSizeChange }) {
       </label>
       <br />
       <RgbaColorPicker color={color} onChange={setColor} />
-      <ColorPalette />
+      <ColorPalette setColor={setColor} />
     </div>
   );
 }

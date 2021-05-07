@@ -3,29 +3,34 @@ import React from 'react';
 
 import * as apiClient from '../../apiClient';
 
-export default function ColorPalette() {
-  const [colors, setColors] = React.useState([]);
+export default function ColorPalette({ setColor }) {
+  const [palette, setPalette] = React.useState([]);
 
   const generatePalette = async () => {
     // results array of 4 subarrays, each being an rgb-color
     const res = await apiClient.getColors();
-    setColors(res);
+    setPalette(res);
   };
 
   const swatchClick = (e, swatch) => {
     e.preventDefault();
-    console.log(swatch);
+    const swatchObj = {
+      r: swatch[0], g: swatch[1], b: swatch[2], a: 1,
+    };
+    setColor(swatchObj);
   };
 
   return (
     <div className="palette-generator">
-      <button onClick={generatePalette}>Generate a Color Palette</button>
+      <button onClick={generatePalette}>
+        Generate a Color Palette
+      </button>
       {
-        colors
+        palette
           ? (
             <div className="palette-swatches">
               {
-                colors.map((color) => (
+                palette.map((color) => (
                   <button
                     key={color}
                     className="palette-swatch"
