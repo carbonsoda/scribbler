@@ -56,6 +56,7 @@ nav {
 }
 
 .brush-tools {
+  align: center;
   display: grid;
   height: 50%;
   width: 80%;
