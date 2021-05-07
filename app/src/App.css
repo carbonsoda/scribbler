@@ -87,7 +87,7 @@ nav {
   width: 24px;
   height: 24px;
   margin: 4px;
-  border: none;
+  border: 0.2px solid rgb(29, 27, 27);
   padding: 0;
   border-radius: 4px;
   cursor: pointer;
