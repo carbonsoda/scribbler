@@ -59,14 +59,13 @@ nav {
   display: grid;
   height: 50%;
   width: 80%;
-  flex-direction: row;
   grid-template-columns: auto auto;
   grid-row: auto auto;
   gap: 1rem;
 }
 
 .palette-generator {
-  width: 10rem;
+  width: 6rem;
   display: flex;
   flex-direction: column;
   overflow-wrap: break-word;
@@ -79,7 +78,7 @@ nav {
 
 .palette-swatches {
   display: flex;
-  padding: 12px;
+  padding: 0.5rem;
   flex-wrap: wrap;
 }
 
