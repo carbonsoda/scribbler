@@ -1,29 +1,22 @@
 /* eslint-disable no-console */
 import React from 'react';
 
+import * as apiClient from '../../apiClient';
+
 export default function ColorPalette() {
-  const [colorsHex, setColorsHex] = React.useState([]);
+  const [colors, setColors] = React.useState([]);
 
   const generatePalette = async () => {
-    fetch('http://colormind.io/api/', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ model: 'default' }),
-    })
-      .then((res) => res.json())
-      .then((results) => setColorsHex(results))
-      .then(() => console.log(colorsHex))
-      .catch((e) => console.error(e));
+    // results array of 4 subarrays, each being an rgb-color
+    const res = await apiClient.getColors();
+    // TODO: make into clickable swatches
+    setColors(`rgb(${res.join(') rgb(')})`);
   };
-
-  React.useEffect(() => generatePalette(), [generatePalette]);
 
   return (
     <div className="palette-generator">
-      Daily Color Palette:
-      {colorsHex}
+      <button onClick={generatePalette}>Generate a Color Palette</button>
+      {colors}
     </div>
   );
 }

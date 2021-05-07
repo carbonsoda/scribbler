@@ -1,16 +1,18 @@
 import React from 'react';
 
+import * as apiClient from '../../apiClient';
+
 import DownloadBtn from './DownloadBtn';
 import ShareBtn from './ShareBtn';
 
 export default function ImgUtils({ canvas }) {
-  const uploadImg = () => {
+  const uploadImg = async () => {
     // children[1] = the user's drawing layer, without background
     const drawnLayer = canvas.current.canvasContainer.children[1].toDataURL('image/png');
 
-    // TODO: configure apiclient.js and pass drawnLayer to the backend to be handled
-    // Should return a url, need to figure how to display it.
-    console.log(drawnLayer);
+    // TODO: Should return a url, need to figure how to display it.
+    const res = await apiClient.uploadImg(drawnLayer);
+    console.log(res);
   };
 
   return (
