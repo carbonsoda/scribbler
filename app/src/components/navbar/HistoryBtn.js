@@ -8,7 +8,7 @@ export default function HistoryBtn({ isAuthenticated }) {
   }
   return (
     <button className="history-btn">
-      <Link to="/history">Upload History</Link>
+      <Link to="/history">Share History</Link>
     </button>
   );
 }

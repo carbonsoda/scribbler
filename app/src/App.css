@@ -56,11 +56,20 @@ nav {
 }
 
 .brush-tools {
-  display: flex;
+  display: grid;
+  height: 50%;
+  width: 80%;
   flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
+  grid-template-columns: auto auto;
+  grid-row: auto auto;
   gap: 1rem;
+}
+
+.palette-generator {
+  width: 10rem;
+  display: flex;
+  flex-direction: column;
+  overflow-wrap: break-word;
 }
 
 .img-utils {
