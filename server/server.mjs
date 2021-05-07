@@ -5,16 +5,18 @@ import mime from 'mime-types';
 const app = express();
 const port = process.env.PORT || 4000;
 
-const images = express.Router();
-images.use(express.json());
-app.use('/api/upload', images);
+// handles processes relating to images
+const imgHandler = express.Router();
+imgHandler.use(express.json());
+app.use('/api/upload', imgHandler);
 
-images.post('/', async (req, res) => {
+imgHandler.post('/', async (req, res) => {
   const { imgDataURL } = req.body;
 
   res.json({ hi: 'there', imgURL: imgDataURL.length });
 });
 
+// handles processes relating to color palettes
 const colors = express.Router();
 colors.use(express.json());
 app.use('/api/colors', colors);
