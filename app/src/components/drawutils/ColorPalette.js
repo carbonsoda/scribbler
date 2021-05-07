@@ -8,8 +8,10 @@ export default function ColorPalette({ setColor }) {
 
   const generatePalette = async () => {
     // results array of 4 subarrays, each being an rgb-color
-    const res = await apiClient.getColors();
-    setPalette(res);
+    const firstSet = await apiClient.getColors();
+    const secondSet = await apiClient.getColors();
+    const combo = firstSet.concat(secondSet);
+    setPalette(combo);
   };
 
   const swatchClick = (e, swatch) => {
