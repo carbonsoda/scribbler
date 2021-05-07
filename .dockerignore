@@ -2,6 +2,5 @@
 !app/package*.json
 !app/public
 !app/src
-!app/.env
 !server/*.mjs
 !server/package*.json
