@@ -48,17 +48,3 @@ export default function ColorPalette({ setColor }) {
     </div>
   );
 }
-
-//
-// <div className="palette-swatches">
-//   {
-//     colors.map((color) => (
-//       <button
-//         key={color}
-//         className="palette-swatch"
-//         style={{ background: `rgb(${color})` }}
-//         onClick={(e) => swatchClick(e, color)}
-//       />
-//     ))
-//   }
-// </div>
