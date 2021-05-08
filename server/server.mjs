@@ -19,12 +19,12 @@ imgHandler.post('/', async (req, res) => {
 // handles processes relating to color palettes
 const colors = express.Router();
 colors.use(express.json());
+// TODO: move this router as its own file + importing it
 app.use('/api/colors', colors);
 
 // generates a color palette from colormind.io
 colors.get('/', async (req, res) => {
   // Colormind has a random assort of color models each day
-  // TODO: consider using that to generate 2-3 palettes not just 1
   const colorModels = await got
     .get('http://colormind.io/list/', { responseType: 'json' })
     .then((result) => result.body.result);
