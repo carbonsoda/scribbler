@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useAuth0 } from '@auth0/auth0-react';
-import { Router } from '@reach/router';
+import { Routes, Route } from 'react-router-dom';
 
 import Loading from './components/Loading';
 import Navbar from './components/Navbar';
@@ -20,10 +20,10 @@ export default function App() {
   return (
     <div className="App">
       <Navbar />
-      <Router>
-        <Main path="/" />
-        <History path="/history" />
-      </Router>
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route path="history" element={<History />} />
+      </Routes>
     </div>
   );
 }
