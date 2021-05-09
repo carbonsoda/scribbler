@@ -1,23 +1,16 @@
+/* eslint-disable import/extensions */
 import express from 'express';
 import mime from 'mime-types';
 
-// requires .js/.mjs but unsure why
-// eslint-disable-next-line import/extensions
+// only works with specifying extension?
+import imgHandler from './routers/images.mjs';
 import paletteRouter from './routers/palette.mjs';
 
 const app = express();
 const port = process.env.PORT || 4000;
 
 // handles processes relating to images
-const imgHandler = express.Router();
-imgHandler.use(express.json());
 app.use('/api/upload', imgHandler);
-
-imgHandler.post('/', async (req, res) => {
-  const { imgDataURL } = req.body;
-
-  res.json({ hi: 'there', imgURL: imgDataURL.length });
-});
 
 // handles processes relating to color palettes
 app.use('/api/colors', paletteRouter);
