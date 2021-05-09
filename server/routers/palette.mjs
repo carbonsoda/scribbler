@@ -1,10 +1,10 @@
 import express from 'express';
 import got from 'got';
 
-const paletteRouter = express.Router();
-paletteRouter.use(express.json());
+const paletteGenerator = express.Router();
+paletteGenerator.use(express.json());
 
-paletteRouter.get('/', async (req, res) => {
+paletteGenerator.get('/', async (req, res) => {
   // Colormind has a random assort of color models each day
   // 'default' + 'ui' are always available models
   const colorModels = await got
@@ -28,4 +28,4 @@ paletteRouter.get('/', async (req, res) => {
   res.json(body.result);
 });
 
-export default paletteRouter;
+export default paletteGenerator;

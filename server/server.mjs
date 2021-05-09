@@ -4,7 +4,7 @@ import mime from 'mime-types';
 
 // only works with specifying extension?
 import imgHandler from './routers/images.mjs';
-import paletteRouter from './routers/palette.mjs';
+import paletteGenerator from './routers/palette.mjs';
 
 const app = express();
 const port = process.env.PORT || 4000;
@@ -13,7 +13,7 @@ const port = process.env.PORT || 4000;
 app.use('/api/upload', imgHandler);
 
 // handles processes relating to color palettes
-app.use('/api/colors', paletteRouter);
+app.use('/api/colors', paletteGenerator);
 
 // By @gsong
 // eslint-disable-next-line no-unused-expressions
