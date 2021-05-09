@@ -2,7 +2,6 @@
 import express from 'express';
 import mime from 'mime-types';
 
-// only works with specifying extension?
 import imgHandler from './routers/images.mjs';
 import paletteGenerator from './routers/palette.mjs';
 
