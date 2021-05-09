@@ -1,32 +1,18 @@
+/* eslint-disable import/extensions */
 import express from 'express';
-import got from 'got';
 import mime from 'mime-types';
+
+import imgHandler from './routers/images.mjs';
+import paletteGenerator from './routers/palette.mjs';
 
 const app = express();
 const port = process.env.PORT || 4000;
 
 // handles processes relating to images
-const imgHandler = express.Router();
-imgHandler.use(express.json());
 app.use('/api/upload', imgHandler);
 
-imgHandler.post('/', async (req, res) => {
-  const { imgDataURL } = req.body;
-
-  res.json({ hi: 'there', imgURL: imgDataURL.length });
-});
-
 // handles processes relating to color palettes
-const colors = express.Router();
-colors.use(express.json());
-app.use('/api/colors', colors);
-
-// generates a color palette from colormind.io
-colors.get('/', async (req, res) => {
-  const { body } = await got.post('http://colormind.io/api/',
-    { json: { model: 'default' }, responseType: 'json' });
-  res.json(body.result);
-});
+app.use('/api/colors', paletteGenerator);
 
 // By @gsong
 // eslint-disable-next-line no-unused-expressions

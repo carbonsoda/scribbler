@@ -56,17 +56,17 @@ nav {
 }
 
 .brush-tools {
+  align: center;
   display: grid;
   height: 50%;
   width: 80%;
-  flex-direction: row;
   grid-template-columns: auto auto;
   grid-row: auto auto;
   gap: 1rem;
 }
 
 .palette-generator {
-  width: 10rem;
+  width: 6rem;
   display: flex;
   flex-direction: column;
   overflow-wrap: break-word;
@@ -75,4 +75,21 @@ nav {
 .img-utils {
   display: flex;
   justify-content: space-between;
+}
+
+.palette-swatches {
+  display: flex;
+  padding: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.palette-swatch {
+  width: 24px;
+  height: 24px;
+  margin: 4px;
+  border: 0.2px solid rgb(29, 27, 27);
+  padding: 0;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
 }

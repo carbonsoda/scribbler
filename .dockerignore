@@ -3,4 +3,5 @@
 !app/public
 !app/src
 !server/*.mjs
+!server/routers
 !server/package*.json
