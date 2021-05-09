@@ -1,6 +1,9 @@
 import express from 'express';
-import got from 'got';
 import mime from 'mime-types';
+
+// requires .js/.mjs but unsure why
+// eslint-disable-next-line import/extensions
+import paletteRouter from './routers/palette.mjs';
 
 const app = express();
 const port = process.env.PORT || 4000;
@@ -17,26 +20,7 @@ imgHandler.post('/', async (req, res) => {
 });
 
 // handles processes relating to color palettes
-const colors = express.Router();
-colors.use(express.json());
-// TODO: move this router as its own file + importing it
-app.use('/api/colors', colors);
-
-// generates a color palette from colormind.io
-colors.get('/', async (req, res) => {
-  // Colormind has a random assort of color models each day
-  const colorModels = await got
-    .get('http://colormind.io/list/', { responseType: 'json' })
-    .then((result) => result.body.result);
-  const randomModel = colorModels[Math.floor(Math.random() * colorModels.length)];
-
-  const { body } = await got.post('http://colormind.io/api/',
-    {
-      json: { model: randomModel },
-      responseType: 'json',
-    });
-  res.json(body.result);
-});
+app.use('/api/colors', paletteRouter);
 
 // By @gsong
 // eslint-disable-next-line no-unused-expressions
