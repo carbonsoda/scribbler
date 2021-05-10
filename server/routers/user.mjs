@@ -36,4 +36,10 @@ userRouter.post('/create', async (req, res) => {
   res.status(status).send({ message });
 });
 
+userRouter.post('/history', async (req, res) => {
+  const { user } = req.body;
+  const history = await db.getUserImages(user);
+  res.json({ history });
+});
+
 export default userRouter;
