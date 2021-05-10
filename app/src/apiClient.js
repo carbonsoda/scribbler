@@ -20,3 +20,15 @@ export const testPing = async () => {
   const res = await fetch('api/ping');
   return res.json();
 };
+
+export const imgHistory = async (token) => {
+  const res = await fetch(
+    '/api/user/protected-message',
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    },
+  );
+  return res.json();
+};
