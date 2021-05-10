@@ -21,7 +21,7 @@ export const testPing = async () => {
   return res.json();
 };
 
-export const imgHistory = async (token) => {
+export const tokenCheck = async (token) => {
   const res = await fetch(
     '/api/user/protected-message',
     {
