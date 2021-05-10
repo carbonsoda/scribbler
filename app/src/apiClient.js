@@ -32,3 +32,15 @@ export const imgHistory = async (token) => {
   );
   return res.json();
 };
+
+// checks if user exists, else create user
+export const createUser = async (user) => {
+  await fetch('/api/user/create',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ user }),
+    });
+};
