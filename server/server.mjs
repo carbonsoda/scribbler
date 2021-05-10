@@ -14,12 +14,13 @@ app.use(helmet());
 app.use(cors({ origin: clientOriginUrl }));
 const port = serverPort || 4000;
 
-// handles processes relating to images
+// handles image processes
 app.use('/api/upload', imgHandler);
 
 // handles processes relating to color palettes
 app.use('/api/colors', paletteGenerator);
 
+// handles user processes
 app.use('/api/user', userRouter);
 
 // By @gsong
