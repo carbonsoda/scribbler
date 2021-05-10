@@ -7,8 +7,11 @@ const db = initDb();
 export const getAllUsers = async () => db.any('SELECT * FROM users');
 export const getAllImages = async () => db.any('SELECT * FROM images');
 
-export const getUser = async (email) => db.oneOrNone('SELECT * FROM users'
-  + ' WHERE email=($1)', [email]);
+export const getUser = async (user) => db.oneOrNone('SELECT * FROM users'
+  + ' WHERE email=($1)', [user.email]);
+
+export const createUser = async (user) => db.one('INSERT INTO users(username, email)'
+  + ' VALUES ($1, $2) RETURNING *', [user.nickname, user.email]);
 
 function initDb() {
   let connection;
