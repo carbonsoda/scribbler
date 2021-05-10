@@ -17,14 +17,17 @@ export default function LoginItems() {
       logout({ returnTo: window.location.origin });
     } else {
       loginWithRedirect();
-      // TODO: as part of login process, check if new user
-      // ie Auth0 ManagementConsole can show login count with email
     }
   };
 
   if (user) {
-    // TODO: remove after above's TODO
-    createUser(user);
+    if (user.email_verified) {
+      // checks if user exists, else create it in db
+      createUser(user);
+    } else {
+      // TODO: If unverified, enable a banner/"please verify"
+    }
+    console.log(user);
   }
 
   return (
