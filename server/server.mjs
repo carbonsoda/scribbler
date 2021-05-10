@@ -1,11 +1,15 @@
 /* eslint-disable import/extensions */
+import cors from 'cors';
 import express from 'express';
+import helmet from 'helmet';
 import mime from 'mime-types';
 
 import imgHandler from './routers/images.mjs';
 import paletteGenerator from './routers/palette.mjs';
 
 const app = express();
+app.use(helmet());
+app.use(cors({ origin: process.env.CLIENT_ORIGIN_URL }));
 const port = process.env.PORT || 4000;
 
 // handles processes relating to images
