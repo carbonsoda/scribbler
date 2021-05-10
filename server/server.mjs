@@ -4,7 +4,7 @@ import express from 'express';
 import helmet from 'helmet';
 import mime from 'mime-types';
 
-import { clientOriginUrl, serverPort } from './env.dev.mjs';
+import { clientOriginUrl } from './env.dev.mjs';
 import imgHandler from './routers/images.mjs';
 import paletteGenerator from './routers/palette.mjs';
 import userRouter from './routers/user.mjs';
@@ -12,7 +12,7 @@ import userRouter from './routers/user.mjs';
 const app = express();
 app.use(helmet());
 app.use(cors({ origin: clientOriginUrl }));
-const port = serverPort || 4000;
+const port = process.env.PORT || 4000;
 
 // handles image processes
 app.use('/api/upload', imgHandler);
