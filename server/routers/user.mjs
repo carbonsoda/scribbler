@@ -5,6 +5,7 @@ import checkJwt from '../check-jwt.mjs';
 // import * as db from '../db.mjs';
 
 const userRouter = express.Router();
+userRouter.use(express.json());
 
 userRouter.get('/public-message', (req, res) => {
   res.status(200).send({ message: 'The API doesn\'t require an access token to share this message.' });
