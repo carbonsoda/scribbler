@@ -6,6 +6,7 @@ import mime from 'mime-types';
 
 import imgHandler from './routers/images.mjs';
 import paletteGenerator from './routers/palette.mjs';
+import userRouter from './routers/user.mjs';
 
 const app = express();
 app.use(helmet());
@@ -17,6 +18,8 @@ app.use('/api/upload', imgHandler);
 
 // handles processes relating to color palettes
 app.use('/api/colors', paletteGenerator);
+
+app.use('/api/user', userRouter);
 
 // By @gsong
 // eslint-disable-next-line no-unused-expressions
