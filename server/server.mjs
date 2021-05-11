@@ -4,18 +4,24 @@ import express from 'express';
 import helmet from 'helmet';
 import mime from 'mime-types';
 
-import { clientOriginUrl } from './env.dev.mjs';
+import { clientOriginUrl, domain } from './env.dev.mjs';
 import imgHandler from './routers/images.mjs';
 import paletteGenerator from './routers/palette.mjs';
 import userRouter from './routers/user.mjs';
 
 const app = express();
+
 app.use(helmet({
   contentSecurityPolicy: {
     useDefaults: true,
-    reportOnly: true, // TODO: Change to more stringent CSP rules
+    directives: {
+      'connect-src': [`https://${domain}`], // allow websocket connections to Auth0 domain
+      'frame-src': ["'none'"], // don't allow this site to be framed
+      'img-src': ["'self'", 'data:', 'https://s.gravatar.com', 'https://i0.wp.com/', 'https://i2.wp.com/'],
+    },
   },
 }));
+
 app.use(cors({ origin: clientOriginUrl }));
 const port = process.env.PORT || 4000;
 
