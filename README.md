@@ -1,6 +1,6 @@
 # Scribbler
 
-*[Live view](https://scribblering.herokuapp.com/)*
+*[Live view](https://www.scribbler.dev/)*
 
 ## Contents
 
@@ -15,7 +15,7 @@
 Scribbler lets folks quickly scribble an idea and share it with others via temporary link; after 30 minutes, the image is permanently deleted.
 
 ## Technology
-This project uses a PostgreSQL, Express, React, and Node.JS (PERN) stack. It will also use the AWS S3 and Colormind APIs, and be hosted on Heroku.
+This project uses a PostgreSQL, Express, React, and Node.JS (PERN) stack. It is hosted on Heroku and will also use the AWS S3 Buckets and Colormind APIs.
 
 ## Installation
  
