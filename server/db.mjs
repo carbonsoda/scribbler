@@ -4,9 +4,6 @@ import pgp from 'pg-promise';
 
 const db = initDb();
 
-export const getAllUsers = async () => db.any('SELECT * FROM users');
-export const getAllImages = async () => db.any('SELECT * FROM images');
-
 export const getUser = async (user) => db.oneOrNone('SELECT * FROM users'
   + ' WHERE email=($1)', [user.email]);
 
