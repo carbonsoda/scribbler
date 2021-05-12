@@ -4,7 +4,7 @@ import express from 'express';
 import helmet from 'helmet';
 import mime from 'mime-types';
 
-import { clientOriginUrl, domain } from './env.dev.mjs';
+import { clientOriginUrl } from './env.dev.mjs';
 import imgHandler from './routers/images.mjs';
 import paletteGenerator from './routers/palette.mjs';
 import userRouter from './routers/user.mjs';
