@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import aws from 'aws-sdk';
 import express from 'express';
+import { nanoid } from 'nanoid';
 
 // eslint-disable-next-line import/extensions
 import { S3_BUCKET } from '../env.dev.mjs';
@@ -13,9 +14,10 @@ imgHandler.use(express.json());
 imgHandler.get('/sign-s3', async (req, res) => {
   const s3 = new aws.S3();
 
-  // TODO: create file naming generator for s3
+  // TODO: use filenameGenerator once public-urls are enabled
   const fileName = 'golucky.png';
   const fileType = 'image/png';
+
   const s3Params = {
     Bucket: S3_BUCKET,
     Key: fileName,
@@ -37,5 +39,7 @@ imgHandler.get('/sign-s3', async (req, res) => {
     res.end();
   });
 });
+
+const filenameGenerator = () => `scribble_${nanoid()}.png`;
 
 export default imgHandler;
