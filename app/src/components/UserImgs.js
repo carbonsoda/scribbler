@@ -2,32 +2,30 @@ import React from 'react';
 
 import { useAuth0 } from '@auth0/auth0-react';
 
-import { imgHistory } from '../apiClient';
+import { getUserImgHistory } from '../apiClient';
 
 export default function UserImgs() {
   const [message, setMessage] = React.useState('');
 
-  const {
-    isAuthenticated, loginWithRedirect, user, getAccessTokenSilently,
-  } = useAuth0();
+  const { user } = useAuth0();
 
-  const callSecureApi = async () => {
-    try {
-      const token = await getAccessTokenSilently();
-      const res = await imgHistory(token);
-
-      setMessage(res.message);
-    } catch (error) {
-      setMessage(error.message);
-    }
+  const getUserImageHistory = async () => {
+    const imgs = await getUserImgHistory(user)
+      .catch((e) => console.error(e));
+    console.log(imgs.history);
   };
-  React.useEffect(() => {
-    callSecureApi();
-  }, []);
+
+  // Not sure if useEffect is the best way to make the images load on page load
+  // React.useEffect(() => {
+  //   if (user) {
+  //     getImages();
+  //   }
+  // }, [user]);
 
   return (
     <div className="img-history">
       Your shared image history goes here.
+      <button onClick={() => getUserImageHistory()}> Load </button>
       <br />
       {message}
     </div>
