@@ -14,11 +14,7 @@ const app = express();
 app.use(helmet({
   contentSecurityPolicy: {
     useDefaults: true,
-    directives: {
-      'connect-src': [`https://${clientOriginUrl}`, `https://${domain}`], // allow websocket connections to Auth0 domain
-      'frame-src': ["'none'"], // don't allow this site to be framed
-      'img-src': ["'self'", 'data:', 'https://s.gravatar.com', 'https://i0.wp.com/', 'https://i2.wp.com/', 'https://avatars.githubusercontent.com/'],
-    },
+    reportOnly: true, // TODO: Change to more stringent CSP rules
   },
 }));
 
