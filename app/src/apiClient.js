@@ -44,3 +44,16 @@ export const createUser = async (user) => {
       body: JSON.stringify({ user }),
     });
 };
+
+export const getUserImgHistory = async (user) => {
+  // needs to be made more secure, by checking token too?
+  const history = await fetch('/api/user/history',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ user }),
+    });
+  return history.json();
+};
