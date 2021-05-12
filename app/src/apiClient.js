@@ -1,13 +1,27 @@
 export const uploadImg = async (imgDataURL) => {
-  const response = await fetch('/api/upload', {
-    method: 'POST',
+  // generate the signed request url
+  const signedURL = await fetch('/api/upload/sign-s3').then((out) => out.json());
+  // use that signed request to upload to S3
+  const uploadUrl = await signedUpload(imgDataURL, signedURL.signedRequest);
+
+  return uploadUrl.json();
+};
+
+// helper function for uploadImg
+const signedUpload = async (imgDataURL, signedURL) => {
+  const data = imgDataURL.replace(/^data:image\/\w+;base64,/, '');
+  const buff = Buffer.from(data, 'base64');
+
+  // TODO: configure to return a url
+  const result = await fetch(signedURL, {
+    method: 'PUT',
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': 'image/png',
     },
-    body: JSON.stringify({ imgDataURL }),
+    body: buff,
   });
 
-  return response.json();
+  return result;
 };
 
 // Generates a color palette
