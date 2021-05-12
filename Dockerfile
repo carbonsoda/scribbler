@@ -1,5 +1,6 @@
 FROM node:lts-alpine as app
 ARG NODE_ENV=production
+ARG INLINE_RUNTIME_CHUNK=false
 RUN npm install -g npm@latest
 WORKDIR /app
 COPY ./app .

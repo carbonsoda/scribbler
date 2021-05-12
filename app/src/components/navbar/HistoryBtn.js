@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export default function HistoryBtn({ isAuthenticated }) {
   if (!isAuthenticated) {
-    // TODO: Show, but route to auth page instead
+    // Don't show if not authenticated
     return <></>;
   }
   return (

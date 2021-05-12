@@ -10,6 +10,7 @@ export default function LoginItems() {
   const {
     loginWithRedirect, logout, isAuthenticated, user,
   } = useAuth0();
+
   const loginUser = () => {
     if (isAuthenticated) {
       logout({ returnTo: window.location.origin });
@@ -17,6 +18,7 @@ export default function LoginItems() {
       loginWithRedirect();
     }
   };
+
   return (
     <div className="login-items">
       <HistoryBtn isAuthenticated={isAuthenticated} />

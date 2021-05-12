@@ -1,18 +1,34 @@
 /* eslint-disable import/extensions */
+import cors from 'cors';
 import express from 'express';
+import helmet from 'helmet';
 import mime from 'mime-types';
 
+import { clientOriginUrl, domain } from './env.dev.mjs';
 import imgHandler from './routers/images.mjs';
 import paletteGenerator from './routers/palette.mjs';
+import userRouter from './routers/user.mjs';
 
 const app = express();
+
+app.use(helmet({
+  contentSecurityPolicy: {
+    useDefaults: true,
+    reportOnly: true, // TODO: Change to more stringent CSP rules
+  },
+}));
+
+app.use(cors({ origin: clientOriginUrl }));
 const port = process.env.PORT || 4000;
 
-// handles processes relating to images
+// handles image processes
 app.use('/api/upload', imgHandler);
 
 // handles processes relating to color palettes
 app.use('/api/colors', paletteGenerator);
+
+// handles user processes
+app.use('/api/user', userRouter);
 
 // By @gsong
 // eslint-disable-next-line no-unused-expressions
