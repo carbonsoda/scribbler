@@ -1,4 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Coming+Soon&family=Open+Sans:wght@300;400;600&display=swap');
+
+body {
+  background-color: #e9e7eb;
+  background-image: url("./assets/beige-paper.png") repeat;
+}
+
 .App {
   display: flex;
   flex-direction: column;
