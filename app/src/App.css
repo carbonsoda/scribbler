@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Coming+Soon&family=Open+Sans:wght@300;400;600&display=swap');
-
 body {
   background-color: #e9e7eb;
   background-image: url("./assets/beige-paper.png") repeat;
@@ -56,18 +55,21 @@ h1 {
 }
 
 /* CONTAINER FOR ALL DRAWING-RELATED ITEMS */
+
 .draw-panel {
   height: 100%;
   padding: 2rem;
 }
 
 /* CANVAS */
+
 .canvas-draw {
   border: 1px solid rgb(48, 48, 53);
   margin: 2rem 0;
 }
 
 /* DRAWING ACTIONS (ie undo, download)*/
+
 .img-utils {
   display: flex;
   justify-content: space-between;
@@ -84,6 +86,7 @@ h1 {
 }
 
 /* CONTAINER FOR BUTTON + SWATCHES */
+
 .palette-generator {
   width: 6rem;
   display: flex;
@@ -92,6 +95,7 @@ h1 {
 }
 
 /* CONTAINER FOR ALL SWATCHES*/
+
 .palette-swatches {
   display: flex;
   padding: 0.5rem;
