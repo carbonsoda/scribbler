@@ -120,12 +120,21 @@ button>a {
   margin: auto;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
+  grid-template-areas: "a c" "b c";
+}
+
+.brush-tools>label {
+  width: 100%;
+  grid-area: a;
+  place-self: center stretch;
+  text-align: center;
 }
 
 /* CONTAINER FOR BUTTON + SWATCHES */
 
 .palette-generator {
-  width: 8rem;
+  grid-area: c;
+  width: 9rem;
   display: flex;
   flex-direction: column;
   overflow-wrap: break-word;
@@ -134,7 +143,7 @@ button>a {
 /* CONTAINER FOR ALL SWATCHES*/
 
 .palette-swatches {
-  margin: 0 1rem;
+  margin: 0 1.5rem;
   display: flex;
   padding: 0.5rem;
   flex-wrap: wrap;
