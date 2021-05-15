@@ -1,12 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Coming+Soon&family=Open+Sans:wght@300;400;600&display=swap');
 :root {
+  /* COLORS */
   --white: #e9e7eb;
   --gray: #f8f6ec;
-  --title: #571089;
-  --btn: rgb(214, 188, 255);
-  --btn-nav: #f8f6ec70;
-  --border-dark: #736f72;
-  --border-light: #9a8f97;
+  --purple: #571089;
+  --semi-purple: #200b2f80;
+  --btn: #e4d6ff;
+  --btn-nav: #e4d6ffb3;
+  --btn-border: 1px solid #3D00B8;
+  --canvas-border: 1px solid #736f72;
+  /* */
+  --title-font: 'Coming Soon';
 }
 
 body {
@@ -15,10 +19,8 @@ body {
 }
 
 .App {
-  display: flex;
-  flex-direction: column;
+  display: flex column;
   padding: 1rem;
-  row-gap: 1rem;
   font-family: 'Open Sans', sans-serif;
 }
 
@@ -34,12 +36,12 @@ nav {
 
 h1 {
   font-size: 3rem;
-  font-family: 'Coming Soon';
+  font-family: var(--title-font);
   margin: -1rem 0;
 }
 
 h1>a {
-  color: var(--title);
+  color: var(--purple);
 }
 
 .user-icon {
@@ -50,7 +52,7 @@ h1>a {
 .login-items {
   height: auto;
   display: flex;
-  flex-direction: row;
+  flex-flow: row wrap;
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
@@ -61,7 +63,7 @@ h1>a {
 
 button {
   background: var(--btn);
-  border: 1px solid var(--border-light);
+  border: var(--btn-border);
   font-size: .9em;
   padding: .65em 1em;
   margin: 0 .5rem 0 .5rem;
@@ -77,19 +79,20 @@ button>a {
   background: var(--btn-nav);
 }
 
+/* LOADING COMPONENT */
+
 .loading {
   display: flex;
-  align-items: center;
-  font-size: 2rem;
+  margin: auto;
+  justify-content: center;
+  font: 2rem var(--title-font);
 }
 
 /* MAIN PAGE */
 
 .main-page {
   display: flex;
-  flex-direction: row;
   justify-content: center;
-  height: 80%;
 }
 
 /* MASTER DRAWING-RELATED CONTAINER */
@@ -102,7 +105,7 @@ button>a {
 /* CANVAS */
 
 .canvas-draw {
-  border: 1px solid var(--border-dark);
+  border: var(--canvas-border);
   margin: 1.5rem 1rem;
 }
 
@@ -150,8 +153,8 @@ button>a {
 }
 
 .palette-swatch {
-  width: 24px;
-  height: 24px;
+  width: 30px;
+  height: 30px;
   margin: 4px;
   border: 0.2px solid rgb(29, 27, 27);
   padding: 0;
