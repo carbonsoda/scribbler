@@ -8,7 +8,7 @@ export default function BrushTools({ onColorChange, onSizeChange }) {
   const [color, setColor] = React.useState({
     r: 0, b: 0, g: 0, a: 1,
   });
-  const [size, setSize] = React.useState(10);
+  const [size, setSize] = React.useState(5);
 
   // change brush color
   React.useEffect(() => {
