@@ -1,6 +1,6 @@
 export const uploadImg = async (imgDataURL) => {
   // generate the signed request url
-  const signedURL = await fetch('/api/upload/sign-s3').then((out) => out.json());
+  const signedURL = await fetch('/api/upload/sign-s3-upload').then((out) => out.json());
   // use that signed request to upload to S3
   const uploadUrl = await signedUpload(imgDataURL, signedURL.signedRequest);
 

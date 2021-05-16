@@ -10,8 +10,10 @@ import { S3_BUCKET } from '../env.dev.mjs';
 const imgHandler = express.Router();
 imgHandler.use(express.json());
 
-// generate a signed s3 bucket url
-imgHandler.get('/sign-s3', async (req, res) => {
+const filenameGenerator = () => `scribble_${nanoid()}.png`;
+
+// generate a signed s3 url for uploading an object
+imgHandler.get('/sign-s3-upload', async (req, res) => {
   const s3 = new aws.S3();
 
   // TODO: use filenameGenerator once public-urls are enabled
@@ -39,7 +41,5 @@ imgHandler.get('/sign-s3', async (req, res) => {
     res.end();
   });
 });
-
-const filenameGenerator = () => `scribble_${nanoid()}.png`;
 
 export default imgHandler;
