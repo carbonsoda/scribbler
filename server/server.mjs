@@ -43,6 +43,10 @@ process.env?.SERVE_REACT?.toLowerCase() === 'true'
 
 app.get('/api/ping', (req, res) => res.json({ res: 'pong' }));
 
+app.get('*', (req, res) => {
+  res.sendFile('/app/index.html');
+});
+
 app.listen(port, () => {
   console.info(`Server listening at http://localhost:${port}`);
 });
