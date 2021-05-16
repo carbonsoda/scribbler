@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Coming+Soon&family=Open+Sans:wght@300;400;600&display=swap');
 :root {
   /* COLORS */
-  --white: #fafafa;
+  --white: #ffffff;
   --purple: #571089;
   --btn: #e4d6ff;
   --btn-nav: #e4d6ffb3;
@@ -11,7 +11,7 @@
 }
 
 body {
-  background: url("./assets/paper-fibers.png") var(--white);
+  background: url("./assets/beige-paper.png") var(--white);
   background-blend-mode: multiply;
 }
 
