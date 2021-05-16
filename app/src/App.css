@@ -1,20 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Coming+Soon&family=Open+Sans:wght@300;400;600&display=swap');
 :root {
   /* COLORS */
-  --white: #e9e7eb;
-  --gray: #f8f6ec;
+  --white: #fafafa;
   --purple: #571089;
-  --semi-purple: #200b2f80;
   --btn: #e4d6ff;
   --btn-nav: #e4d6ffb3;
   --btn-border: 1px solid #3D00B8;
   --canvas-border: 1px solid #736f72;
-  /* */
-  --title-font: 'Coming Soon';
+  --font-large: 'Coming Soon';
 }
 
 body {
-  background: url("./assets/beige-paper.png") var(--white);
+  background: url("./assets/paper-fibers.png") var(--white);
   background-blend-mode: multiply;
 }
 
@@ -36,7 +33,7 @@ nav {
 
 h1 {
   font-size: 3rem;
-  font-family: var(--title-font);
+  font-family: var(--font-large);
   margin: -1rem 0;
 }
 
@@ -46,11 +43,10 @@ h1>a {
 
 .user-icon {
   border-radius: 50%;
-  height: 5rem;
+  height: 4rem;
 }
 
 .login-items {
-  height: auto;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
@@ -85,7 +81,7 @@ button>a {
   display: flex;
   margin: auto;
   justify-content: center;
-  font: 2rem var(--title-font);
+  font: 2rem var(--font-large);
 }
 
 /* MAIN PAGE */
