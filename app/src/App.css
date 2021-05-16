@@ -1,95 +1,161 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Coming+Soon&family=Open+Sans:wght@300;400;600&display=swap');
+:root {
+  /* COLORS */
+  --white: #fafafa;
+  --purple: #571089;
+  --btn: #e4d6ff;
+  --btn-nav: #e4d6ffb3;
+  --btn-border: 1px solid #3D00B8;
+  --canvas-border: 1px solid #736f72;
+  --font-large: 'Coming Soon';
+}
+
+body {
+  background: url("./assets/paper-fibers.png") var(--white);
+  background-blend-mode: multiply;
+}
+
 .App {
-  display: flex;
-  flex-direction: column;
+  display: flex column;
   padding: 1rem;
-  row-gap: 1rem;
   font-family: 'Open Sans', sans-serif;
 }
 
+/* NAVBAR ITEMS */
+
 nav {
-  background-color: gray;
   height: 10%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 1rem 0 1rem;
+  padding: 0 1rem;
+}
+
+h1 {
+  font-size: 3rem;
+  font-family: var(--font-large);
+  margin: -1rem 0;
+}
+
+h1>a {
+  color: var(--purple);
+}
+
+.user-icon {
+  border-radius: 50%;
+  height: 4rem;
 }
 
 .login-items {
-  height: auto;
   display: flex;
-  flex-direction: row;
+  flex-flow: row wrap;
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
   padding: 0.5rem;
 }
 
-.user-icon {
-  border-radius: 50%;
-  height: 5rem;
+/* BUTTONS */
+
+button {
+  background: var(--btn);
+  border: var(--btn-border);
+  font-size: .9em;
+  padding: .65em 1em;
+  margin: 0 .5rem 0 .5rem;
+  border-radius: .5em;
 }
+
+button>a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.login-items>button {
+  background: var(--btn-nav);
+}
+
+/* LOADING COMPONENT */
 
 .loading {
   display: flex;
-  align-items: center;
-  font-size: 2rem;
+  margin: auto;
+  justify-content: center;
+  font: 2rem var(--font-large);
 }
+
+/* MAIN PAGE */
 
 .main-page {
   display: flex;
-  flex-direction: row;
   justify-content: center;
-  height: 80%;
 }
 
+/* MASTER DRAWING-RELATED CONTAINER */
+
 .draw-panel {
-  border: 1px solid blue;
   height: 100%;
   padding: 2rem;
 }
 
+/* CANVAS */
+
 .canvas-draw {
-  border: 1px solid rgb(48, 48, 53);
-  margin: 2rem 0;
+  border: var(--canvas-border);
+  margin: 1.5rem 1rem;
 }
 
-.brush-tools {
-  align: center;
-  display: grid;
-  height: 50%;
-  width: 80%;
-  grid-template-columns: auto auto;
-  grid-row: auto auto;
-  gap: 1rem;
-}
-
-.palette-generator {
-  width: 6rem;
-  display: flex;
-  flex-direction: column;
-  overflow-wrap: break-word;
-}
+/* DRAWING ACTIONS (ie undo, download)*/
 
 .img-utils {
   display: flex;
   justify-content: space-between;
 }
 
-.palette-swatches {
+.brush-tools {
+  display: grid;
+  width: 80%;
+  display: grid;
+  margin: auto;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  grid-template-areas: "a c" "b c";
+}
+
+.brush-tools>label {
+  width: 100%;
+  grid-area: a;
+  place-self: center stretch;
+  text-align: center;
+}
+
+/* CONTAINER FOR BUTTON + SWATCHES */
+
+.palette-generator {
+  grid-area: c;
+  width: 9rem;
   display: flex;
+  flex-direction: column;
+  overflow-wrap: break-word;
+}
+
+/* CONTAINER FOR ALL SWATCHES*/
+
+.palette-swatches {
+  margin: 0 1.5rem;
   padding: 0.5rem;
-  flex-wrap: wrap;
+  display: flex;
+  flex-flow: column wrap;
+  /* px for consistency with swatches */
+  max-height: 200px;
 }
 
 .palette-swatch {
-  width: 24px;
-  height: 24px;
+  width: 30px;
+  flex: 1 1 30px;
   margin: 4px;
   border: 0.2px solid rgb(29, 27, 27);
   padding: 0;
   border-radius: 4px;
   cursor: pointer;
-  outline: none;
 }
