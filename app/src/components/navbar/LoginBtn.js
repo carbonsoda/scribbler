@@ -1,13 +1,21 @@
 import React from 'react';
 
-export default function LoginBtn({ isAuthenticated, loginUser }) {
-  const loginClick = (e) => {
+import { useAuth0 } from '@auth0/auth0-react';
+
+export default function LoginBtn() {
+  const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+
+  const loginUser = (e) => {
     e.preventDefault();
-    loginUser();
+    if (isAuthenticated) {
+      logout({ returnTo: window.location.origin });
+    } else {
+      loginWithRedirect();
+    }
   };
 
   return (
-    <button className="login-btn" onClick={loginClick}>
+    <button className="login-btn" onClick={(e) => loginUser(e)}>
       {isAuthenticated ? 'Log out' : 'Log in'}
     </button>
   );
