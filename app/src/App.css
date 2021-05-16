@@ -143,14 +143,16 @@ button>a {
 
 .palette-swatches {
   margin: 0 1.5rem;
-  display: flex;
   padding: 0.5rem;
-  flex-wrap: wrap;
+  display: flex;
+  flex-flow: column wrap;
+  /* px for consistency with swatches */
+  max-height: 200px;
 }
 
 .palette-swatch {
   width: 30px;
-  height: 30px;
+  flex: 1 1 30px;
   margin: 4px;
   border: 0.2px solid rgb(29, 27, 27);
   padding: 0;
