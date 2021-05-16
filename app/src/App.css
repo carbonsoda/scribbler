@@ -14,8 +14,8 @@
 }
 
 body {
-  background-color: var(--white);
-  background-image: url("./assets/beige-paper.png") repeat;
+  background: url("./assets/beige-paper.png") var(--white);
+  background-blend-mode: multiply;
 }
 
 .App {
