@@ -18,7 +18,7 @@ export default function History() {
     } else {
       setHistoryTxt('This page displays the images you\'ve shared in the last 24 hours. Log in or sign up to keep track of your own scribbles.');
     }
-  }, [isAuthenticated, user.email_verified]);
+  }, [isAuthenticated, user]);
 
   return (
     <div className="history-page">
