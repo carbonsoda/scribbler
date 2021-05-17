@@ -22,7 +22,7 @@ app.use(cors({ origin: clientOriginUrl }));
 const port = process.env.PORT || 4000;
 
 // handles image processes
-app.use('/api/upload', imgHandler);
+app.use('/api/image', imgHandler);
 
 // handles processes relating to color palettes
 app.use('/api/colors', paletteGenerator);
@@ -42,6 +42,10 @@ process.env?.SERVE_REACT?.toLowerCase() === 'true'
   );
 
 app.get('/api/ping', (req, res) => res.json({ res: 'pong' }));
+
+app.get('*', (req, res) => {
+  res.sendFile('/app/index.html');
+});
 
 app.listen(port, () => {
   console.info(`Server listening at http://localhost:${port}`);

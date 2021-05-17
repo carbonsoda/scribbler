@@ -4,18 +4,15 @@ import pgp from 'pg-promise';
 
 const db = initDb();
 
-export const getUser = async (user) => db.oneOrNone('SELECT * FROM users'
-  + ' WHERE email=($1)', [user.email]);
+export const createUser = async (user) => db.one('INSERT INTO users(username, user_id)'
+  + ' VALUES ($1, $2)'
+  + ' ON CONFLICT (user_id) DO NOTHING'
+  + ' RETURNING user_id', [user.nickname, user.sub]);
 
-export const createUser = async (user) => db.one('INSERT INTO users(username, email)'
-  + ' VALUES ($1, $2) RETURNING user_id', [user.nickname, user.email]);
-
-export const getUserImages = async (user) => db.any(
-  'SELECT img.img_id, img.img_url, img.time_created FROM images AS img'
-  + ' RIGHT JOIN users AS us'
-  + ' ON us.user_id = img.user_id'
-  + ' WHERE us.email = $1',
-  [user.email],
+export const getUserImages = async (id) => db.any(
+  'SELECT img.img_id, img.img_name, img.time_created FROM images'
+  + ' WHERE images.user_id=($1)',
+  [id],
 );
 
 function initDb() {

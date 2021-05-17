@@ -7,22 +7,12 @@ import LoginBtn from './LoginBtn';
 import UserIcon from './UserIcon';
 
 export default function LoginItems() {
-  const {
-    loginWithRedirect, logout, isAuthenticated, user,
-  } = useAuth0();
-
-  const loginUser = () => {
-    if (isAuthenticated) {
-      logout({ returnTo: window.location.origin });
-    } else {
-      loginWithRedirect();
-    }
-  };
+  const { isAuthenticated, user } = useAuth0();
 
   return (
     <div className="login-items">
       <HistoryBtn isAuthenticated={isAuthenticated} />
-      <LoginBtn isAuthenticated={isAuthenticated} loginUser={loginUser} />
+      <LoginBtn />
       <UserIcon user={user} />
     </div>
   );

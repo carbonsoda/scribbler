@@ -5,7 +5,7 @@
 -- Dumped from database version 13.2
 -- Dumped by pg_dump version 13.2
 
--- Started on 2021-05-09 20:50:46
+-- Started on 2021-05-16 17:31:35
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -28,6 +28,7 @@ CREATE SCHEMA public;
 ALTER SCHEMA public OWNER TO postgres;
 
 --
+-- Dependencies: 3
 -- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: postgres
 --
 
@@ -44,8 +45,8 @@ SET default_table_access_method = heap;
 
 CREATE TABLE public.images (
     img_id integer NOT NULL,
-    user_id integer,
-    img_url text,
+    user_id text,
+    img_name text,
     time_created timestamp without time zone
 );
 
@@ -80,9 +81,9 @@ ALTER SEQUENCE public.images_img_id_seq OWNED BY public.images.img_id;
 --
 
 CREATE TABLE public.users (
-    user_id integer NOT NULL,
+    id integer NOT NULL,
     username character varying(30),
-    email character varying(50)
+    user_id character varying(30)
 );
 
 
@@ -108,7 +109,7 @@ ALTER TABLE public.users_user_id_seq OWNER TO postgres;
 -- Name: users_user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE public.users_user_id_seq OWNED BY public.users.user_id;
+ALTER SEQUENCE public.users_user_id_seq OWNED BY public.users.id;
 
 
 --
@@ -119,10 +120,10 @@ ALTER TABLE ONLY public.images ALTER COLUMN img_id SET DEFAULT nextval('public.i
 
 
 --
--- Name: users user_id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: users id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.users ALTER COLUMN user_id SET DEFAULT nextval('public.users_user_id_seq'::regclass);
+ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_user_id_seq'::regclass);
 
 
 --
@@ -130,15 +131,14 @@ ALTER TABLE ONLY public.users ALTER COLUMN user_id SET DEFAULT nextval('public.u
 -- Data for Name: images; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.images (img_id, user_id, img_url, time_created) FROM stdin;
-1	1	https://imghostingsite.com/213	2021-05-09 20:31:33.709636
-2	1	https://imghostingsite.com/3213	2021-05-09 20:31:33.709636
-3	2	https://imghostingsite.com/4532	2021-05-09 20:31:33.709636
-4	2	https://imghostingsite.com/25462	2021-05-09 20:31:33.709636
-5	2	https://imghostingsite.com/7456743	2021-05-09 20:31:33.709636
-6	1	https://imghostingsite.com/23432432432432	2021-05-09 20:31:33.709636
-7	1	https://imghostingsite.com/6546364263	2021-05-09 20:31:33.709636
-8	2	https://imghostingsite.com/5643254315424	2021-05-09 20:31:33.709636
+COPY public.images (img_id, user_id, img_name, time_created) FROM stdin;
+7	auth0|60a197e2cbc3e700700e2352	rhKUSc0JghvkxtIVobbvw	2021-05-09 20:31:33.709636
+8	auth0|60a197e2cbc3e700700e2352	UzAeBf3jlJfBv2NX0nKc9	2021-05-09 20:31:33.709636
+3	scribbler|123	v1621196923/scribbler-samples/1.png	2021-05-09 20:31:33.709636
+4	scribbler|123	v1621196923/scribbler-samples/2.png	2021-05-09 20:31:33.709636
+5	scribbler|123	v1621196923/scribbler-samples/3.png	2021-05-09 20:31:33.709636
+2	scribbler|123	v1621210456/scribbler-samples/4.png	2021-05-09 20:31:33.709636
+6	scribbler|123	v1621210678/scribbler-samples/5.png	2021-05-09 20:31:33.709636
 \.
 
 
@@ -147,10 +147,9 @@ COPY public.images (img_id, user_id, img_url, time_created) FROM stdin;
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.users (user_id, username, email) FROM stdin;
-1	Jane Doe	jane@doe.com
-2	Nyan cat	nyan@cat.com
-3	Joe Scribbles	joe@joe.org
+COPY public.users (id, username, user_id) FROM stdin;
+2	scribbler-demo	scribbler|123
+3	scribbler-user	auth0|60a197e2cbc3e700700e2352
 \.
 
 
@@ -167,7 +166,7 @@ SELECT pg_catalog.setval('public.images_img_id_seq', 8, true);
 -- Name: users_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.users_user_id_seq', 3, true);
+SELECT pg_catalog.setval('public.users_user_id_seq', 4, true);
 
 
 --
@@ -179,11 +178,11 @@ ALTER TABLE ONLY public.images
 
 
 --
--- Name: users users_email_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: users users_id; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.users
-    ADD CONSTRAINT users_email_key UNIQUE (email);
+    ADD CONSTRAINT users_id UNIQUE (user_id);
 
 
 --
@@ -191,10 +190,18 @@ ALTER TABLE ONLY public.users
 --
 
 ALTER TABLE ONLY public.users
-    ADD CONSTRAINT users_pkey PRIMARY KEY (user_id);
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
 
 
--- Completed on 2021-05-09 20:50:46
+--
+-- Name: users users_un; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_un UNIQUE (user_id);
+
+
+-- Completed on 2021-05-16 17:31:35
 
 --
 -- PostgreSQL database dump complete

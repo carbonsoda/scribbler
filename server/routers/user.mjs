@@ -17,28 +17,15 @@ userRouter.get('/protected-message', checkJwt, (req, res) => {
 
 userRouter.post('/create', async (req, res) => {
   const { user } = req.body;
-  let status = 400;
-  let message = 'Error with finding or creating user';
 
-  const userExists = await db.getUser(user);
+  const newUser = await db.createUser(user);
 
-  if (!userExists) {
-    const newUser = await db.createUser(user);
-    if (newUser) {
-      status = 201;
-      message = `User ${user.nickname} successfully created.`;
-    }
-  } else {
-    status = 200;
-    message = `User ${user.nickname} successfully found.`;
-  }
-
-  res.status(status).send({ message });
+  res.status(200).json({ newUser });
 });
 
 userRouter.post('/history', async (req, res) => {
   const { user } = req.body;
-  const history = await db.getUserImages(user);
+  const history = await db.getUserImages(user.sub);
   res.json({ history });
 });
 

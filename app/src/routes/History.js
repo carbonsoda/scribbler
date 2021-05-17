@@ -2,23 +2,29 @@ import React from 'react';
 
 import { useAuth0 } from '@auth0/auth0-react';
 
-import Loading from '../components/Loading';
 import UserImgs from '../components/UserImgs';
 
 export default function History() {
-  const {
-    isAuthenticated, loginWithRedirect,
-  } = useAuth0();
+  const [historyTxt, setHistoryTxt] = React.useState('');
+  const { isAuthenticated, user } = useAuth0();
 
-  // Shows Loading component before redirecting
-  if (!isAuthenticated) {
-    loginWithRedirect();
-    return (<Loading />);
-  }
+  React.useEffect(() => {
+    if (isAuthenticated) {
+      if (!user.email_verified) {
+        setHistoryTxt('Please verify your email to start recording your own scribbles.');
+      } else {
+        setHistoryTxt('Here are the scribbles you\'ve shared in the last 24 hours:');
+      }
+    } else {
+      setHistoryTxt('This page displays the images you\'ve shared in the last 24 hours. Log in or sign up to keep track of your own scribbles.');
+    }
+  }, [isAuthenticated, user.email_verified]);
 
   return (
     <div className="history-page">
-      This is the history page.
+      <p>
+        { historyTxt }
+      </p>
       <UserImgs />
     </div>
   );
