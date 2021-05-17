@@ -10,8 +10,8 @@ export const createUser = async (user) => db.one('INSERT INTO users(username, us
   + ' RETURNING user_id', [user.nickname, user.sub]);
 
 export const getUserImages = async (id) => db.any(
-  'SELECT img.img_id, img.img_name, img.time_created FROM images'
-  + ' WHERE images.user_id=($1)',
+  'SELECT img.img_id, img.img_name, img.time_created FROM images AS img'
+  + ' WHERE img.user_id=($1)',
   [id],
 );
 
