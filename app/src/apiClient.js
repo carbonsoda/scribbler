@@ -1,6 +1,6 @@
 export const uploadImg = async (imgDataURL) => {
   // generate the signed request url
-  const signedURL = await fetch('/api/upload/sign-s3-upload').then((out) => out.json());
+  const signedURL = await fetch('/api/image/sign-s3-upload').then((out) => out.json());
   // use that signed request to upload to S3
   const uploadUrl = await signedUpload(imgDataURL, signedURL.signedRequest);
 
@@ -47,7 +47,6 @@ export const tokenCheck = async (token) => {
   return res.json();
 };
 
-// checks if user exists, else create user
 export const createUser = async (user) => {
   await fetch('/api/user/create',
     {

@@ -22,7 +22,7 @@ app.use(cors({ origin: clientOriginUrl }));
 const port = process.env.PORT || 4000;
 
 // handles image processes
-app.use('/api/upload', imgHandler);
+app.use('/api/image', imgHandler);
 
 // handles processes relating to color palettes
 app.use('/api/colors', paletteGenerator);
