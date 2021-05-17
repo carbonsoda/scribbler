@@ -18,7 +18,7 @@ const signedImg = async (imgDataURL) => {
   const uploadUrl = await signedUpload(imgDataURL, signedRequest);
 
   // generate signed access-request url
-  const { shareUrl } = await fetch('/api/image/sign-s3-share').then((out) => out.json());
+  const { shareUrl } = await fetch(`/api/image/sign-s3-share?fileName=${fileName}`).then((out) => out.json());
   // access the uploaded object
   return ({ fileName, shareUrl });
 };
