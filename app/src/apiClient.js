@@ -1,18 +1,33 @@
-export const uploadImg = async (imgDataURL) => {
-  // generate the signed request url
-  const signedURL = await fetch('/api/image/sign-s3-upload').then((out) => out.json());
-  // use that signed request to upload to S3
-  const uploadUrl = await signedUpload(imgDataURL, signedURL.signedRequest);
+export const uploadImg = async (imgDataURL, user) => {
+  const { fileName, shareUrl } = await signedImg(imgDataURL);
 
-  return uploadUrl.json();
+  if (user) {
+    // TODO: check and create user
+    // TODO: add user_id + fileName to images db
+  }
+
+  return shareUrl.json();
 };
 
-// helper function for uploadImg
+// handles signed access requests to AWS S3 bucket
+const signedImg = async (imgDataURL) => {
+  // generate the signed request url
+  const { signedRequest, fileName } = await fetch('/api/image/sign-s3-upload').then((out) => out.json());
+
+  // use that signed request to upload to S3
+  const uploadUrl = await signedUpload(imgDataURL, signedRequest);
+
+  // generate signed access-request url
+  const { shareUrl } = await fetch('/api/image/sign-s3-share').then((out) => out.json());
+  // access the uploaded object
+  return ({ fileName, shareUrl });
+};
+
+// helper function for signedImg
 const signedUpload = async (imgDataURL, signedURL) => {
   const data = imgDataURL.replace(/^data:image\/\w+;base64,/, '');
   const buff = Buffer.from(data, 'base64');
 
-  // TODO: configure to return a url
   const result = await fetch(signedURL, {
     method: 'PUT',
     headers: {
