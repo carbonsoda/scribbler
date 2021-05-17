@@ -2,12 +2,11 @@ import React from 'react';
 
 import { useAuth0 } from '@auth0/auth0-react';
 
-import Loading from '../components/Loading';
 import UserImgs from '../components/UserImgs';
 
 export default function History() {
   const [historyTxt, setHistoryTxt] = React.useState('');
-  const { isLoading, isAuthenticated, user } = useAuth0();
+  const { isAuthenticated, user } = useAuth0();
 
   React.useEffect(() => {
     if (isAuthenticated) {
@@ -22,18 +21,11 @@ export default function History() {
   }, [isAuthenticated, user.email_verified]);
 
   return (
-    <>
-      {
-      isLoading ? <Loading />
-        : (
-          <div className="history-page">
-            <p>
-              { historyTxt }
-            </p>
-            <UserImgs />
-          </div>
-        )
-      }
-    </>
+    <div className="history-page">
+      <p>
+        { historyTxt }
+      </p>
+      <UserImgs />
+    </div>
   );
 }
