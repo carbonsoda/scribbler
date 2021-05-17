@@ -134,11 +134,11 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 COPY public.images (img_id, user_id, img_name, time_created) FROM stdin;
 7	auth0|60a197e2cbc3e700700e2352	rhKUSc0JghvkxtIVobbvw	2021-05-09 20:31:33.709636
 8	auth0|60a197e2cbc3e700700e2352	UzAeBf3jlJfBv2NX0nKc9	2021-05-09 20:31:33.709636
-3	scribbler|123	v1621196923/scribbler-samples/1.png	2021-05-09 20:31:33.709636
-4	scribbler|123	v1621196923/scribbler-samples/2.png	2021-05-09 20:31:33.709636
-5	scribbler|123	v1621196923/scribbler-samples/3.png	2021-05-09 20:31:33.709636
-2	scribbler|123	v1621210456/scribbler-samples/4.png	2021-05-09 20:31:33.709636
-6	scribbler|123	v1621210678/scribbler-samples/5.png	2021-05-09 20:31:33.709636
+3	scribbler|123	https://res.cloudinary.com/carbonsoda/image/upload/v1621196923/scribbler-samples/1.png	2021-05-09 20:31:33.709636
+4	scribbler|123	https://res.cloudinary.com/carbonsoda/image/upload/v1621196923/scribbler-samples/2.png	2021-05-09 20:31:33.709636
+5	scribbler|123	https://res.cloudinary.com/carbonsoda/image/upload/v1621196923/scribbler-samples/3.png	2021-05-09 20:31:33.709636
+2	scribbler|123	https://res.cloudinary.com/carbonsoda/image/upload/v1621210456/scribbler-samples/4.png	2021-05-09 20:31:33.709636
+6	scribbler|123	https://res.cloudinary.com/carbonsoda/image/upload/v1621210678/scribbler-samples/5.png	2021-05-09 20:31:33.709636
 \.
 
 
