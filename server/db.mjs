@@ -16,15 +16,23 @@ export const createUser = async (user) => db.one(
 export const getUserImages = async (id) => db.any(
   'SELECT img_id, img_name, time_created'
   + ' FROM images'
+  + ' WHERE user_id=($1)'
+  + ' AND time_created >= NOW() - INTERVAL \'24 HOURS\'',
+  [id],
+);
+
+export const getDemoImages = async (id) => db.any(
+  'SELECT img_id, img_name, time_created'
+  + ' FROM images'
   + ' WHERE user_id=($1)',
   [id],
 );
 
 export const addUserImage = async (id, fileName) => db.any(
-  'INSERT INTO images(user_id, img_name)'
-  + ' VALUES ($1, $2)'
+  'INSERT INTO images(user_id, img_name, time_created)'
+  + ' VALUES ($1, $2, $3)'
   + ' RETURNING img_name',
-  [id, fileName],
+  [id, fileName, new Date()],
 );
 
 function initDb() {
