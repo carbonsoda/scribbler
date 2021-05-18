@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useAuth0 } from '@auth0/auth0-react';
 
-import UserImgs from '../components/UserImgs';
+import ImgHistory from '../components/UserImgs';
 
 export default function History() {
   const [historyTxt, setHistoryTxt] = React.useState('');
@@ -25,7 +25,7 @@ export default function History() {
       <p>
         { historyTxt }
       </p>
-      <UserImgs />
+      <ImgHistory />
     </div>
   );
 }

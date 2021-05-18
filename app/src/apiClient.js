@@ -75,6 +75,6 @@ export const createUser = async (user) => {
 
 export const getImgHistory = async (userId) => {
   // TODO: needs to be made more secure, via token check?
-  const history = await fetch(userId);
+  const history = await fetch(`/api/user/history?id=${userId}`);
   return history.json();
 };
