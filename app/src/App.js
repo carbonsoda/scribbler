@@ -7,7 +7,7 @@ import Loading from './components/Loading';
 import Navbar from './components/Navbar';
 import VerifyEmail from './components/VerifyEmail';
 import History from './routes/History';
-import Main from './routes/Main';
+import Home from './routes/Home';
 
 import './css/App.css';
 
@@ -24,10 +24,12 @@ export default function App() {
                 <Navbar />
                 <VerifyEmail />
               </header>
-              <Routes>
-                <Route path="/" element={<Main />} />
-                <Route path="/history" element={<History />} />
-              </Routes>
+              <main>
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/history" element={<History />} />
+                </Routes>
+              </main>
             </div>
           )
       }
