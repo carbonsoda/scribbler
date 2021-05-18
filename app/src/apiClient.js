@@ -19,7 +19,7 @@ const signedImg = async (imgDataURL) => {
 
   // generate signed access-request url
   const { shareUrl } = await fetch(`/api/image/sign-s3-share?fileName=${fileName}`).then((out) => out.json());
-  // access the uploaded object
+
   return ({ fileName, shareUrl });
 };
 
@@ -73,15 +73,8 @@ export const createUser = async (user) => {
     });
 };
 
-export const getUserImgHistory = async (userId) => {
-  // needs to be made more secure, by checking token too?
-  const history = await fetch('/api/user/history',
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ userId }),
-    });
+export const getImgHistory = async (userId) => {
+  // TODO: needs to be made more secure, via token check?
+  const history = await fetch(userId);
   return history.json();
 };

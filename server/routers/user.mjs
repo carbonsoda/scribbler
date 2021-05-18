@@ -3,6 +3,7 @@ import express from 'express';
 
 import checkJwt from '../check-jwt.mjs';
 import * as db from '../db.mjs';
+import { demoid } from '../env.dev.mjs';
 
 const userRouter = express.Router();
 userRouter.use(express.json());
@@ -35,9 +36,15 @@ userRouter.post('/upload', async (req, res) => {
   res.status(201).json({ imgName });
 });
 
-userRouter.post('/history', async (req, res) => {
-  const { userId } = req.body;
-  const history = await db.getUserImages(userId);
+userRouter.get('/history', async (req, res) => {
+  const { id } = req.params;
+
+  if (id) {
+    const history = await db.getUserImages(id);
+    res.json({ history });
+  }
+
+  const history = await db.getDemoImages(demoid);
   res.json({ history });
 });
 
