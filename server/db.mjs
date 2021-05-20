@@ -5,28 +5,28 @@ import pgp from 'pg-promise';
 const db = initDb();
 
 export const getDemoImages = async (id) => db.any(
-  'SELECT img_id, img_name, time_created'
+  'SELECT img_id, img_name, img_url, time_created'
   + ' FROM images'
   + ' WHERE user_id=($1)',
   [id],
 );
 
 export const getUserImages = async (id) => db.any(
-  'SELECT img_id, img_name, time_created'
+  'SELECT img_id, img_name, img_url, time_created'
   + ' FROM images'
   + ' WHERE user_id=($1)'
   + ' AND time_created >= NOW() - INTERVAL \'24 HOURS\'',
   [id],
 );
 
-export const addUserImage = async (id, fileName) => db.any(
-  'INSERT INTO images(user_id, img_name, time_created)'
-  + ' VALUES ($1, $2, $3)'
+export const addUserImage = async (id, fileName, url) => db.any(
+  'INSERT INTO images(user_id, img_name, img_url, time_created)'
+  + ' VALUES ($1, $2, $3, $4)'
   + ' RETURNING img_name',
-  [id, fileName, new Date()],
+  [id, fileName, url, new Date()],
 );
 
-export const createUser = async (user) => db.one(
+export const createUser = async (user) => db.oneOrNone(
   'INSERT INTO users(username, user_id)'
   + ' VALUES ($1, $2)'
   + ' ON CONFLICT (user_id)'

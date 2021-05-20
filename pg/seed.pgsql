@@ -5,7 +5,7 @@
 -- Dumped from database version 13.2
 -- Dumped by pg_dump version 13.2
 
--- Started on 2021-05-16 17:31:35
+-- Started on 2021-05-20 14:50:24
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -24,8 +24,6 @@ SET row_security = off;
 
 CREATE SCHEMA public;
 
-
-ALTER SCHEMA public OWNER TO postgres;
 
 --
 -- Dependencies: 3
@@ -47,11 +45,10 @@ CREATE TABLE public.images (
     img_id integer NOT NULL,
     user_id text,
     img_name text,
-    time_created timestamp without time zone
+    time_created timestamp without time zone,
+    img_url character varying
 );
 
-
-ALTER TABLE public.images OWNER TO postgres;
 
 --
 -- Name: images_img_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -65,8 +62,6 @@ CREATE SEQUENCE public.images_img_id_seq
     NO MAXVALUE
     CACHE 1;
 
-
-ALTER TABLE public.images_img_id_seq OWNER TO postgres;
 
 --
 -- Dependencies: 202
@@ -82,12 +77,10 @@ ALTER SEQUENCE public.images_img_id_seq OWNED BY public.images.img_id;
 
 CREATE TABLE public.users (
     id integer NOT NULL,
-    username character varying(30),
-    user_id character varying(30)
+    username character varying(50),
+    user_id character varying(50)
 );
 
-
-ALTER TABLE public.users OWNER TO postgres;
 
 --
 -- Name: users_user_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -101,8 +94,6 @@ CREATE SEQUENCE public.users_user_id_seq
     NO MAXVALUE
     CACHE 1;
 
-
-ALTER TABLE public.users_user_id_seq OWNER TO postgres;
 
 --
 -- Dependencies: 200
@@ -131,14 +122,14 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 -- Data for Name: images; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.images (img_id, user_id, img_name, time_created) FROM stdin;
-7	auth0|60a197e2cbc3e700700e2352	rhKUSc0JghvkxtIVobbvw	2021-05-09 20:31:33.709636
-8	auth0|60a197e2cbc3e700700e2352	UzAeBf3jlJfBv2NX0nKc9	2021-05-09 20:31:33.709636
-3	scribbler|123	https://res.cloudinary.com/carbonsoda/image/upload/v1621196923/scribbler-samples/1.png	2021-05-09 20:31:33.709636
-4	scribbler|123	https://res.cloudinary.com/carbonsoda/image/upload/v1621196923/scribbler-samples/2.png	2021-05-09 20:31:33.709636
-5	scribbler|123	https://res.cloudinary.com/carbonsoda/image/upload/v1621196923/scribbler-samples/3.png	2021-05-09 20:31:33.709636
-2	scribbler|123	https://res.cloudinary.com/carbonsoda/image/upload/v1621210456/scribbler-samples/4.png	2021-05-09 20:31:33.709636
-6	scribbler|123	https://res.cloudinary.com/carbonsoda/image/upload/v1621210678/scribbler-samples/5.png	2021-05-09 20:31:33.709636
+COPY public.images (img_id, user_id, img_name, time_created, img_url) FROM stdin;
+2	scribbler|123	scribbler-sample-1.png	2021-05-09 20:31:33	https://res.cloudinary.com/carbonsoda/image/upload/v1621196923/scribbler-samples/1.png
+3	scribbler|123	scribbler-sample-2.png	2021-05-09 20:31:33	https://res.cloudinary.com/carbonsoda/image/upload/v1621196923/scribbler-samples/2.png
+4	scribbler|123	scribbler-sample-3.png	2021-05-09 20:31:33	https://res.cloudinary.com/carbonsoda/image/upload/v1621196923/scribbler-samples/3.png
+5	scribbler|123	scribbler-sample-4.png	2021-05-09 20:31:33	https://res.cloudinary.com/carbonsoda/image/upload/v1621210456/scribbler-samples/4.png
+6	scribbler|123	scribbler-sample-5.png	2021-05-09 20:31:33	https://res.cloudinary.com/carbonsoda/image/upload/v1621210678/scribbler-samples/5.png
+7	auth0|60a197e2cbc3e700700e2352	scribble_QqyeW8P7PdNbLBxu01D-M.png	2021-05-09 20:31:33.709636	scribble_QqyeW8P7PdNbLBxu01D-M.png
+8	auth0|60a197e2cbc3e700700e2352	UzAeBf3jlJfBv2NX0nKc9.png	2021-05-09 20:31:33.709636	UzAeBf3jlJfBv2NX0nKc9.png
 \.
 
 
@@ -201,7 +192,7 @@ ALTER TABLE ONLY public.users
     ADD CONSTRAINT users_un UNIQUE (user_id);
 
 
--- Completed on 2021-05-16 17:31:35
+-- Completed on 2021-05-20 14:50:24
 
 --
 -- PostgreSQL database dump complete
