@@ -1,9 +1,14 @@
+// Generates a color palette
+export const getColors = async () => {
+  const res = await fetch('/api/colors');
+  return res.json();
+};
+
 export const uploadImg = async (imgDataURL, user) => {
   const { fileName, shareUrl } = await signedImg(imgDataURL);
 
   if (user) {
-    // TODO: check and create user
-    // TODO: add user_id + fileName to images db
+    await addUserImg(fileName, user);
   }
 
   return shareUrl;
@@ -39,31 +44,10 @@ const signedUpload = async (imgDataURL, signedURL) => {
   return result;
 };
 
-// Generates a color palette
-export const getColors = async () => {
-  const res = await fetch('/api/colors');
-  return res.json();
-};
-
-export const testPing = async () => {
-  const res = await fetch('api/ping');
-  return res.json();
-};
-
-export const tokenCheck = async (token) => {
-  const res = await fetch(
-    '/api/user/protected-message',
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    },
-  );
-  return res.json();
-};
-
-export const createUser = async (user) => {
-  await fetch('/api/user/create',
+// Handles if user exists in db
+// + add their new image to their image_history record
+const addUserImg = async (fileName, user) => {
+  const userId = await fetch('/api/user/create',
     {
       method: 'POST',
       headers: {
@@ -71,6 +55,8 @@ export const createUser = async (user) => {
       },
       body: JSON.stringify({ user }),
     });
+
+  // TODO: add user_id + fileName to images db
 };
 
 export const getImgHistory = async (userId) => {
