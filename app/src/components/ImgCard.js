@@ -26,11 +26,15 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ImgCard({ url, timeCreated, refreshUrl }) {
+export default function ImgCard({
+  name, url, timeCreated, refreshUrl,
+}) {
   const refreshClick = (e) => {
     e.preventDefault();
     refreshUrl();
   };
+
+  // TODO: configure time display
   const classes = useStyles();
 
   return (
@@ -42,12 +46,9 @@ export default function ImgCard({ url, timeCreated, refreshUrl }) {
           alt="A Scribble"
           height="140"
           image={url}
-          title="Contemplative Reptile"
+          title={name}
         />
         <CardContent>
-          <Typography gutterBottom variant="h5">
-            {/* Lizard */}
-          </Typography>
           <Typography variant="body2" component="p">
             Time created:
             {timeCreated}
@@ -58,9 +59,9 @@ export default function ImgCard({ url, timeCreated, refreshUrl }) {
         <Button size="medium" color="primary" onClick={(e) => refreshClick(e)}>
           Share
         </Button>
-        <Button size="medium" color="primary">
+        {/* <Button size="medium" color="primary">
           Delete
-        </Button>
+        </Button> */}
       </CardActions>
     </Card>
   );
