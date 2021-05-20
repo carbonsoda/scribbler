@@ -16,8 +16,7 @@ const filenameGenerator = () => `scribble_${nanoid()}.png`;
 imgHandler.get('/sign-s3-upload', async (req, res) => {
   const s3 = new aws.S3();
 
-  // TODO: use filenameGenerator once public-urls are enabled
-  const fileName = 'golucky.png';
+  const fileName = filenameGenerator();
   const fileType = 'image/png';
 
   const s3Params = {

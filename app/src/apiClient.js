@@ -6,7 +6,7 @@ export const uploadImg = async (imgDataURL, user) => {
     // TODO: add user_id + fileName to images db
   }
 
-  return shareUrl.json();
+  return shareUrl;
 };
 
 // handles signed access requests to AWS S3 bucket

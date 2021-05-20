@@ -22,7 +22,6 @@ export default function ImgHistory() {
         id = user.sub;
       }
       const { history } = await getImgHistory(id);
-      console.log(history);
       setImages(history);
     };
 
