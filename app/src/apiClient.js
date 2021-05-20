@@ -44,19 +44,19 @@ const signedUpload = async (imgDataURL, signedURL) => {
   return result;
 };
 
-// Handles if user exists in db
-// + add their new image to their image_history record
+// Add user's new image to their image_history record
 const addUserImg = async (fileName, user) => {
-  const userId = await fetch('/api/user/create',
+  const { url24Hr } = await fetch(`/api/image/sign-s3-share-user?fileName=${fileName}`)
+    .then((out) => out.json());
+
+  const imgName = await fetch('/api/user/upload',
     {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ user }),
+      body: JSON.stringify({ fileName, user, url24Hr }),
     });
-
-  // TODO: add user_id + fileName to images db
 };
 
 export const getImgHistory = async (userId) => {

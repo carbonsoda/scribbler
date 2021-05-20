@@ -18,7 +18,6 @@ imgHandler.get('/sign-s3-upload', async (req, res) => {
 
   const fileName = filenameGenerator();
   const fileType = 'image/png';
-
   const s3Params = {
     Bucket: S3_BUCKET,
     Key: fileName,
@@ -62,6 +61,36 @@ imgHandler.get('/sign-s3-share', async (req, res) => {
     }
     const returnData = {
       shareUrl: url,
+    };
+
+    res.write(JSON.stringify(returnData));
+    res.end();
+  });
+});
+
+// Will store in database and show on img cards
+// TODO: optimize + combine with above
+imgHandler.get('/sign-s3-share-user', async (req, res) => {
+  const { fileName } = req.query;
+
+  const s3 = new aws.S3();
+
+  const s3Params = {
+    Bucket: S3_BUCKET,
+    Key: fileName,
+    Expires: 86400,
+  };
+
+  const longerUrl = {};
+
+  // eslint-disable-next-line consistent-return
+  s3.getSignedUrl('getObject', s3Params, (err, url) => {
+    if (err) {
+      console.log(err);
+      return res.end();
+    }
+    const returnData = {
+      url24Hr: url,
     };
 
     res.write(JSON.stringify(returnData));

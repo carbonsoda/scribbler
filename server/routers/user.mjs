@@ -17,26 +17,27 @@ userRouter.post('/create', async (req, res) => {
 });
 
 userRouter.post('/upload', async (req, res) => {
-  const { fileName, user } = req.body;
+  const { fileName, user, url24Hr } = req.body;
 
   // TODO: wrap in try/catch
   // undefined if user already exists
   await db.createUser(user);
 
-  const imgName = await db.addUserImage(user.sub, fileName);
+  const imgName = await db.addUserImage(user.sub, fileName, url24Hr);
 
   res.status(201).json({ imgName });
 });
 
 userRouter.get('/history', async (req, res) => {
-  const { id } = req.params;
+  const { id } = req.query;
+  let history;
 
   if (id) {
-    const history = await db.getUserImages(id);
-    res.json({ history });
+    history = await db.getUserImages(id);
+  } else {
+    history = await db.getDemoImages(demoid);
   }
 
-  const history = await db.getDemoImages(demoid);
   res.json({ history });
 });
 
