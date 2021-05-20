@@ -3,6 +3,7 @@ import express from 'express';
 
 import checkJwt from '../check-jwt.mjs';
 import * as db from '../db.mjs';
+import { demoid } from '../env.dev.mjs';
 
 const userRouter = express.Router();
 userRouter.use(express.json());
@@ -18,14 +19,32 @@ userRouter.get('/protected-message', checkJwt, (req, res) => {
 userRouter.post('/create', async (req, res) => {
   const { user } = req.body;
 
-  const newUser = await db.createUser(user);
+  // undefined if user already exists
+  const appUser = await db.createUser(user);
 
-  res.status(200).json({ newUser });
+  res.status(200).json({ appUser });
 });
 
-userRouter.post('/history', async (req, res) => {
-  const { user } = req.body;
-  const history = await db.getUserImages(user.sub);
+userRouter.post('/upload', async (req, res) => {
+  const { user, fileName } = req.body;
+
+  // TODO: wrap in try/catch
+  // undefined if user already exists
+  await db.createUser(user);
+  const imgName = await db.addUserImage(user.sub, fileName);
+
+  res.status(201).json({ imgName });
+});
+
+userRouter.get('/history', async (req, res) => {
+  const { id } = req.params;
+
+  if (id) {
+    const history = await db.getUserImages(id);
+    res.json({ history });
+  }
+
+  const history = await db.getDemoImages(demoid);
   res.json({ history });
 });
 

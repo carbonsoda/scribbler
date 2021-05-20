@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useAuth0 } from '@auth0/auth0-react';
 
-import UserImgs from '../components/UserImgs';
+import ImgHistory from '../components/UserImgs';
 
 export default function History() {
   const [historyTxt, setHistoryTxt] = React.useState('');
@@ -18,14 +18,14 @@ export default function History() {
     } else {
       setHistoryTxt('This page displays the images you\'ve shared in the last 24 hours. Log in or sign up to keep track of your own scribbles.');
     }
-  }, [isAuthenticated, user.email_verified]);
+  }, [isAuthenticated, user]);
 
   return (
     <div className="history-page">
       <p>
         { historyTxt }
       </p>
-      <UserImgs />
+      <ImgHistory />
     </div>
   );
 }

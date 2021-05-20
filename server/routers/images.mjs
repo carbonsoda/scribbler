@@ -35,6 +35,34 @@ imgHandler.get('/sign-s3-upload', async (req, res) => {
     }
     const returnData = {
       signedRequest: url,
+      fileName,
+    };
+
+    res.write(JSON.stringify(returnData));
+    res.end();
+  });
+});
+
+// generate a signed s3 url for accessing an object
+imgHandler.get('/sign-s3-share', async (req, res) => {
+  const { fileName } = req.query;
+
+  const s3 = new aws.S3();
+
+  const s3Params = {
+    Bucket: S3_BUCKET,
+    Key: fileName,
+    Expires: 1800,
+  };
+
+  // eslint-disable-next-line consistent-return
+  s3.getSignedUrl('getObject', s3Params, (err, url) => {
+    if (err) {
+      console.log(err);
+      return res.end();
+    }
+    const returnData = {
+      shareUrl: url,
     };
 
     res.write(JSON.stringify(returnData));

@@ -10,3 +10,5 @@ export const clientOriginUrl = process.env.CLIENT_ORIGIN_URL;
 export const {
   AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_REGION, S3_BUCKET,
 } = process.env;
+
+export const demoid = process.env.DEMO_ID;
