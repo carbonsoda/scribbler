@@ -11,12 +11,7 @@ import userRouter from './routers/user.mjs';
 
 const app = express();
 
-app.use(helmet({
-  contentSecurityPolicy: {
-    useDefaults: true,
-    reportOnly: true, // TODO: Change to more stringent CSP rules
-  },
-}));
+app.use(helmet({ contentSecurityPolicy: false }));
 
 app.use(cors({ origin: clientOriginUrl }));
 const port = process.env.PORT || 4000;
