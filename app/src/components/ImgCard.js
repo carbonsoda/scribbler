@@ -32,6 +32,7 @@ export default function ImgCard({
   fileName, cardUrl, timeCreated, shareUrl, sharedAtTime, user,
 }) {
   const [activeShareUrl, setActiveShareUrl] = React.useState(shareUrl);
+  const [activeUrlTime, setActiveUrlTime] = React.useState(sharedAtTime);
 
   const refreshUrl = async (e) => {
     e.preventDefault();
@@ -39,6 +40,7 @@ export default function ImgCard({
     if (user) {
       const { url, time } = await renewShareUrl(user.sub, fileName);
       setActiveShareUrl(url);
+      setActiveUrlTime(time);
     }
   };
 
@@ -63,8 +65,12 @@ export default function ImgCard({
           </Typography>
           <Typography variant="body2" component="p">
             Share it:
+            { ' ' }
             <a href={activeShareUrl}>click</a>
-            {/* time remaining here */}
+            <br />
+            Active since
+            {' '}
+            { activeUrlTime }
           </Typography>
         </CardContent>
       </CardActionArea>
@@ -72,9 +78,6 @@ export default function ImgCard({
         <Button size="medium" color="primary" onClick={(e) => refreshUrl(e)}>
           Share
         </Button>
-        {/* <Button size="medium" color="primary">
-          Delete
-        </Button> */}
       </CardActions>
     </Card>
   );

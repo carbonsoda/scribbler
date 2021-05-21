@@ -4,6 +4,7 @@ export const getColors = async () => {
   return res.json();
 };
 
+// Directs all images processes and return shareable url
 export const uploadImg = async (imgDataURL, user) => {
   const { fileName, shareUrl } = await signedImg(imgDataURL);
 
@@ -62,7 +63,6 @@ const addUserImg = async (fileName, user, shareUrl) => {
 };
 
 export const getImgHistory = async (userId) => {
-  // TODO: needs to be made more secure, via token check?
   const history = await fetch(`/api/user/history?id=${userId}`);
   return history.json();
 };
