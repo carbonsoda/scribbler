@@ -8,7 +8,7 @@ export const uploadImg = async (imgDataURL, user) => {
   const { fileName, shareUrl } = await signedImg(imgDataURL);
 
   if (user) {
-    addUserImg(fileName, user);
+    addUserImg(fileName, user, shareUrl);
   }
 
   return shareUrl;
@@ -45,7 +45,7 @@ const signedUpload = async (imgDataURL, signedURL) => {
 };
 
 // Add user's new image to their image_history record
-const addUserImg = async (fileName, user) => {
+const addUserImg = async (fileName, user, shareUrl) => {
   const { url24Hr } = await fetch(`/api/image/sign-s3-share-user?fileName=${fileName}`)
     .then((out) => out.json());
 
@@ -55,7 +55,9 @@ const addUserImg = async (fileName, user) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ fileName, user, url24Hr }),
+      body: JSON.stringify({
+        fileName, user, shareUrl, url24Hr,
+      }),
     });
 };
 
