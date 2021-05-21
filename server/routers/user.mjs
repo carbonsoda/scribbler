@@ -43,4 +43,22 @@ userRouter.get('/history', async (req, res) => {
   res.json({ history });
 });
 
+userRouter.get('/share-url', async (req, res) => {
+  const { id, fileName } = req.query;
+
+  // eslint-disable-next-line camelcase
+  const { share_img_url, share_start_time } = await db.getUserImgUrl(id, fileName);
+
+  res.json({ imgUrl: share_img_url, startTime: share_start_time });
+});
+
+userRouter.post('/share-url', async (req, res) => {
+  const { shareUrl, id, fileName } = req.body;
+
+  // eslint-disable-next-line camelcase
+  const { share_start_time } = await db.updateUserImageUrl(id, fileName, shareUrl);
+
+  res.json({ newStartTime: share_start_time });
+});
+
 export default userRouter;
