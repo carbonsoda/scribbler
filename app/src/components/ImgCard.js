@@ -27,11 +27,17 @@ const useStyles = makeStyles({
 });
 
 export default function ImgCard({
-  name, url, timeCreated, refreshUrl,
+  fileName, cardUrl, timeCreated, shareUrl, sharedAtTime, user,
 }) {
-  const refreshClick = (e) => {
+  const [activeShareUrl, setActiveShareUrl] = React.useState(shareUrl);
+
+  const refreshUrl = async (e) => {
     e.preventDefault();
-    refreshUrl();
+
+    if (user) {
+      // renew url
+      // set it to active share url
+    }
   };
 
   // TODO: configure time display
@@ -45,18 +51,23 @@ export default function ImgCard({
           className={classes.media}
           alt="A Scribble"
           height="140"
-          image={url}
-          title={name}
+          image={cardUrl}
+          title={fileName}
         />
         <CardContent>
           <Typography variant="body2" component="p">
             Time created:
             {timeCreated}
           </Typography>
+          <Typography variant="body2" component="p">
+            Share it:
+            <a href={activeShareUrl}>click</a>
+            {/* time remaining here */}
+          </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions className={classes.buttons}>
-        <Button size="medium" color="primary" onClick={(e) => refreshClick(e)}>
+        <Button size="medium" color="primary" onClick={(e) => refreshUrl(e)}>
           Share
         </Button>
         {/* <Button size="medium" color="primary">
