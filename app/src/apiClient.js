@@ -8,7 +8,7 @@ export const uploadImg = async (imgDataURL, user) => {
   const { fileName, shareUrl } = await signedImg(imgDataURL);
 
   if (user) {
-    await addUserImg(fileName, user);
+    addUserImg(fileName, user);
   }
 
   return shareUrl;
