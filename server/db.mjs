@@ -32,8 +32,9 @@ export const getUserImgUrl = async (id, fileName) => db.one(
   [id, fileName],
 );
 
-export const updateUserImageUrl = async (id, fileName, newUrl) => db.none(
-  'UPDATE images SET share_img_url=($1), share_start_time=($2)'
+export const updateUserImageUrl = async (id, fileName, newUrl) => db.any(
+  'UPDATE images'
+  + ' SET share_img_url=($1), share_start_time=($2)'
   + ' WHERE user_id=($3) AND img_name=($4)'
   + ' RETURNING share_start_time',
   [newUrl, new Date(), id, fileName],

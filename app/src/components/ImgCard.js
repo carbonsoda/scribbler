@@ -44,7 +44,7 @@ export default function ImgCard({
     }
   };
 
-  // TODO: configure time display
+  // TODO: Stylize time display
   const classes = useStyles();
 
   return (

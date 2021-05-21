@@ -53,12 +53,12 @@ userRouter.get('/share-url', async (req, res) => {
 });
 
 userRouter.post('/share-url', async (req, res) => {
-  const { shareUrl, id, fileName } = req.body;
+  const { shareUrl, userId, fileName } = req.body;
 
   // eslint-disable-next-line camelcase
-  const { share_start_time } = await db.updateUserImageUrl(id, fileName, shareUrl);
+  const newStartTime = await db.updateUserImageUrl(userId, fileName, shareUrl);
 
-  res.json({ newStartTime: share_start_time });
+  res.json(newStartTime);
 });
 
 export default userRouter;

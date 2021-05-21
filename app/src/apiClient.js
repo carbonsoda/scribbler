@@ -68,11 +68,12 @@ export const getImgHistory = async (userId) => {
 };
 
 export const renewShareUrl = async (userId, fileName) => {
-  const { imgUrl, startTime } = await fetch(`/api/user/share-url?fileName=${fileName}&id=${userId}`);
+  const { imgUrl, startTime } = await fetch(`/api/user/share-url?fileName=${fileName}&id=${userId}`).then((out) => out.json());
 
   if (shareTimeExpired(startTime)) {
     // generate a new one, and replace it in the db
-    const { shareUrl } = await fetch(`/api/image/sign-s3-share?fileName=${fileName}`);
+    const { shareUrl } = await fetch(`/api/image/sign-s3-share?fileName=${fileName}`)
+      .then((out) => out.json());
 
     //  replace it in the db
     const { newStartTime } = await fetch('/api/user/share-url',
@@ -81,7 +82,9 @@ export const renewShareUrl = async (userId, fileName) => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ fileName, userId, shareUrl }),
+        body: JSON.stringify({
+          fileName, userId, shareUrl,
+        }),
       });
 
     return { url: shareUrl, time: newStartTime };
