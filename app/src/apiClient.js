@@ -66,3 +66,34 @@ export const getImgHistory = async (userId) => {
   const history = await fetch(`/api/user/history?id=${userId}`);
   return history.json();
 };
+
+export const renewShareUrl = async (userId, fileName) => {
+  const { imgUrl, startTime } = await fetch(`/api/user/share-url?fileName=${fileName}&id=${userId}`);
+
+  if (shareTimeExpired(startTime)) {
+    // generate a new one, and replace it in the db
+    const { shareUrl } = await fetch(`/api/image/sign-s3-share?fileName=${fileName}`);
+
+    //  replace it in the db
+    const { newStartTime } = await fetch('/api/user/share-url',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ fileName, userId, shareUrl }),
+      });
+
+    return { url: shareUrl, time: newStartTime };
+  }
+
+  return { url: imgUrl, time: startTime };
+};
+
+const shareTimeExpired = (dbTime) => {
+  const current = new Date();
+  const old = new Date(dbTime);
+  const diff = (current.getTime() - old.getTime()) / 1000 / 60;
+
+  return Math.abs(Math.round(diff)) >= 30;
+};

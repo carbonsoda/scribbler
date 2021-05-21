@@ -9,6 +9,8 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
+import { renewShareUrl } from '../apiClient';
+
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
@@ -35,8 +37,8 @@ export default function ImgCard({
     e.preventDefault();
 
     if (user) {
-      // renew url
-      // set it to active share url
+      const { url, time } = await renewShareUrl(user.sub, fileName);
+      setActiveShareUrl(url);
     }
   };
 
