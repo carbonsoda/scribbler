@@ -1,7 +1,11 @@
 import React from 'react';
 
+import GetAppIcon from '@material-ui/icons/GetApp';
+
+import { useStyles, ToolButton } from '../../assets/MUIStyles';
+
 export default function DownloadBtn({ canvas }) {
-  const startDownload = (e) => {
+  const downloadImg = (e) => {
     e.preventDefault();
 
     // children[1] = the user's drawing layer, without background
@@ -15,9 +19,17 @@ export default function DownloadBtn({ canvas }) {
     downloadLink.click();
   };
 
+  const classes = useStyles();
+
   return (
-    <button onClick={startDownload}>
+    <ToolButton
+      variant="contained"
+      color="primary"
+      className={classes.margin}
+      onClick={(e) => downloadImg(e)}
+      endIcon={<GetAppIcon />}
+    >
       Download
-    </button>
+    </ToolButton>
   );
 }

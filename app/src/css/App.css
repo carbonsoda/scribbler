@@ -70,13 +70,22 @@ h1>a {
 
 .main-page {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: column;
+  align-items: center;
   justify-content: center;
+}
+
+.description {
+  background: #ffffff80;
+  padding: 1em 1em;
+  margin: 0 .5rem 0 .5rem;
+  border-radius: .5em;
 }
 
 .img-history {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: row-reverse wrap;
   gap: 1rem;
   align-items: center;
+  justify-content: center;
 }
