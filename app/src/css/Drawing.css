@@ -26,7 +26,8 @@
   display: grid;
   width: 80%;
   display: grid;
-  margin: auto;
+  margin: auto auto;
+  padding: 0 2rem;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
   grid-template-areas: "a c" "b c";

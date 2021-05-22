@@ -2,8 +2,11 @@ import React from 'react';
 
 import { useAuth0 } from '@auth0/auth0-react';
 
+import { useStyles, ToolButton } from '../../assets/MUIStyles';
+
 export default function LoginBtn() {
   const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+  const classes = useStyles();
 
   const loginUser = (e) => {
     e.preventDefault();
@@ -15,8 +18,11 @@ export default function LoginBtn() {
   };
 
   return (
-    <button className="login-btn" onClick={(e) => loginUser(e)}>
+    <ToolButton
+      className={classes.margin}
+      onClick={(e) => loginUser(e)}
+    >
       {isAuthenticated ? 'Log out' : 'Log in'}
-    </button>
+    </ToolButton>
   );
 }

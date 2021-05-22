@@ -4,7 +4,6 @@
   --white: #ffffff;
   --purple: #571089;
   --btn: #edeaf5;
-  --btn-nav: #e4d6ffb3;
   --btn-border: 1px solid #3D00B8;
   --canvas-border: 1px solid #736f72;
   --font-large: 'Coming Soon';
@@ -56,26 +55,6 @@ h1>a {
   align-items: center;
   gap: 1rem;
   padding: 0.5rem;
-}
-
-/* BUTTONS */
-
-button {
-  background: var(--btn);
-  border: var(--btn-border);
-  font-size: .9em;
-  padding: .65em 1em;
-  margin: 0 .5rem 0 .5rem;
-  border-radius: .5em;
-}
-
-button>a {
-  color: inherit;
-  text-decoration: none;
-}
-
-.login-items>button {
-  background: var(--btn-nav);
 }
 
 /* LOADING COMPONENT */
