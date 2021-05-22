@@ -8,6 +8,7 @@ export default function History() {
   const [historyTxt, setHistoryTxt] = React.useState('');
   const { isAuthenticated, user } = useAuth0();
 
+  // TODO: Add styling
   React.useEffect(() => {
     if (isAuthenticated) {
       if (!user.email_verified) {

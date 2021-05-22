@@ -7,13 +7,12 @@ export default function CanvasPanel({ brushSize, brushColor, canvas }) {
   const lazyRadius = 5;
 
   return (
-    <div className="canvas-draw">
-      <CanvasDraw
-        ref={canvas}
-        brushColor={brushColor}
-        lazyRadius={lazyRadius}
-        brushRadius={brushSize}
-      />
-    </div>
+    <CanvasDraw
+      className="canvas-draw"
+      ref={canvas}
+      brushColor={brushColor}
+      lazyRadius={lazyRadius}
+      brushRadius={brushSize}
+    />
   );
 }
