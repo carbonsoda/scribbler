@@ -5,26 +5,23 @@ import { useAuth0 } from '@auth0/auth0-react';
 import ImgHistory from '../components/UserImgs';
 
 export default function History() {
-  const [historyTxt, setHistoryTxt] = React.useState('');
-  const { isAuthenticated, user } = useAuth0();
+  const { isAuthenticated } = useAuth0();
 
-  // TODO: Add styling
-  React.useEffect(() => {
-    if (isAuthenticated) {
-      if (!user.email_verified) {
-        setHistoryTxt('Please verify your email to start recording your own scribbles.');
-      } else {
-        setHistoryTxt('Here are the scribbles you\'ve shared in the last 24 hours:');
-      }
-    } else {
-      setHistoryTxt('This page displays the images you\'ve shared in the last 24 hours. Log in or sign up to keep track of your own scribbles.');
-    }
-  }, [isAuthenticated, user]);
+  const historyTxt = 'This page displays the scribbles you\'ve shared in the last 24 hours. Once your shareable link expires after 30 minutes, come here to generate a new one.';
 
   return (
     <div className="history-page">
-      <p>
+      <p className="description">
         { historyTxt }
+        { isAuthenticated ? ''
+          : (
+            <>
+              <br />
+              {' '}
+              <br />
+              Sign up or log in to get started!
+            </>
+          )}
       </p>
       <ImgHistory />
     </div>
