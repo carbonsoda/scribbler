@@ -4,11 +4,12 @@ export const getColors = async () => {
   return res.json();
 };
 
+// Directs all images processes and return shareable url
 export const uploadImg = async (imgDataURL, user) => {
   const { fileName, shareUrl } = await signedImg(imgDataURL);
 
   if (user) {
-    addUserImg(fileName, user);
+    addUserImg(fileName, user, shareUrl);
   }
 
   return shareUrl;
@@ -45,7 +46,7 @@ const signedUpload = async (imgDataURL, signedURL) => {
 };
 
 // Add user's new image to their image_history record
-const addUserImg = async (fileName, user) => {
+const addUserImg = async (fileName, user, shareUrl) => {
   const { url24Hr } = await fetch(`/api/image/sign-s3-share-user?fileName=${fileName}`)
     .then((out) => out.json());
 
@@ -55,12 +56,47 @@ const addUserImg = async (fileName, user) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ fileName, user, url24Hr }),
+      body: JSON.stringify({
+        fileName, user, shareUrl, url24Hr,
+      }),
     });
 };
 
 export const getImgHistory = async (userId) => {
-  // TODO: needs to be made more secure, via token check?
   const history = await fetch(`/api/user/history?id=${userId}`);
   return history.json();
+};
+
+export const renewShareUrl = async (userId, fileName) => {
+  const { imgUrl, startTime } = await fetch(`/api/user/share-url?fileName=${fileName}&id=${userId}`).then((out) => out.json());
+
+  if (shareTimeExpired(startTime)) {
+    // generate a new one, and replace it in the db
+    const { shareUrl } = await fetch(`/api/image/sign-s3-share?fileName=${fileName}`)
+      .then((out) => out.json());
+
+    //  replace it in the db
+    const { newStartTime } = await fetch('/api/user/share-url',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          fileName, userId, shareUrl,
+        }),
+      });
+
+    return { url: shareUrl, time: newStartTime };
+  }
+
+  return { url: imgUrl, time: startTime };
+};
+
+const shareTimeExpired = (dbTime) => {
+  const current = new Date();
+  const old = new Date(dbTime);
+  const diff = (current.getTime() - old.getTime()) / 1000 / 60;
+
+  return Math.abs(Math.round(diff)) >= 30;
 };

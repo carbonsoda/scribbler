@@ -5,7 +5,7 @@
 -- Dumped from database version 13.2
 -- Dumped by pg_dump version 13.2
 
--- Started on 2021-05-20 14:50:24
+-- Started on 2021-05-20 19:30:08
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -43,10 +43,12 @@ SET default_table_access_method = heap;
 
 CREATE TABLE public.images (
     img_id integer NOT NULL,
-    user_id text,
+    user_id text NOT NULL,
     img_name text,
     time_created timestamp without time zone,
-    img_url character varying
+    card_img_url text,
+    share_img_url text,
+    share_start_time timestamp without time zone
 );
 
 
@@ -122,14 +124,12 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 -- Data for Name: images; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.images (img_id, user_id, img_name, time_created, img_url) FROM stdin;
-2	scribbler|123	scribbler-sample-1.png	2021-05-09 20:31:33	https://res.cloudinary.com/carbonsoda/image/upload/v1621196923/scribbler-samples/1.png
-3	scribbler|123	scribbler-sample-2.png	2021-05-09 20:31:33	https://res.cloudinary.com/carbonsoda/image/upload/v1621196923/scribbler-samples/2.png
-4	scribbler|123	scribbler-sample-3.png	2021-05-09 20:31:33	https://res.cloudinary.com/carbonsoda/image/upload/v1621196923/scribbler-samples/3.png
-5	scribbler|123	scribbler-sample-4.png	2021-05-09 20:31:33	https://res.cloudinary.com/carbonsoda/image/upload/v1621210456/scribbler-samples/4.png
-6	scribbler|123	scribbler-sample-5.png	2021-05-09 20:31:33	https://res.cloudinary.com/carbonsoda/image/upload/v1621210678/scribbler-samples/5.png
-7	auth0|60a197e2cbc3e700700e2352	scribble_QqyeW8P7PdNbLBxu01D-M.png	2021-05-09 20:31:33.709636	scribble_QqyeW8P7PdNbLBxu01D-M.png
-8	auth0|60a197e2cbc3e700700e2352	UzAeBf3jlJfBv2NX0nKc9.png	2021-05-09 20:31:33.709636	UzAeBf3jlJfBv2NX0nKc9.png
+COPY public.images (img_id, user_id, img_name, time_created, card_img_url, share_img_url, share_start_time) FROM stdin;
+2	scribbler|123	scribbler-sample-1.png	2021-05-09 20:31:33	https://res.cloudinary.com/carbonsoda/image/upload/v1621196923/scribbler-samples/1.png	\N	2021-05-09 20:31:33
+3	scribbler|123	scribbler-sample-2.png	2021-05-09 20:31:33	https://res.cloudinary.com/carbonsoda/image/upload/v1621196923/scribbler-samples/2.png	\N	2021-05-09 20:31:33
+4	scribbler|123	scribbler-sample-3.png	2021-05-09 20:31:33	https://res.cloudinary.com/carbonsoda/image/upload/v1621196923/scribbler-samples/3.png	\N	2021-05-09 20:31:33
+5	scribbler|123	scribbler-sample-4.png	2021-05-09 20:31:33	https://res.cloudinary.com/carbonsoda/image/upload/v1621210456/scribbler-samples/4.png	\N	2021-05-09 20:31:33
+6	scribbler|123	scribbler-sample-5.png	2021-05-09 20:31:33	https://res.cloudinary.com/carbonsoda/image/upload/v1621210678/scribbler-samples/5.png	\N	2021-05-09 20:31:33
 \.
 
 
@@ -140,7 +140,6 @@ COPY public.images (img_id, user_id, img_name, time_created, img_url) FROM stdin
 
 COPY public.users (id, username, user_id) FROM stdin;
 2	scribbler-demo	scribbler|123
-3	scribbler-user	auth0|60a197e2cbc3e700700e2352
 \.
 
 
@@ -192,7 +191,7 @@ ALTER TABLE ONLY public.users
     ADD CONSTRAINT users_un UNIQUE (user_id);
 
 
--- Completed on 2021-05-20 14:50:24
+-- Completed on 2021-05-20 19:30:09
 
 --
 -- PostgreSQL database dump complete

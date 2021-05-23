@@ -11,11 +11,6 @@ export default function ImgHistory() {
 
   const { user, isAuthenticated } = useAuth0();
 
-  const refreshUrl = async (url) => {
-    // TODO: configure new signed url
-    console.log('Refresh request in process');
-  };
-
   React.useEffect(() => {
     const getUserImgHistory = async () => {
       let id = '';
@@ -35,10 +30,12 @@ export default function ImgHistory() {
         images.map((image) => (
           <ImgCard
             key={image.img_id}
-            name={image.img_name}
-            url={image.img_url}
+            fileName={image.img_name}
+            cardUrl={image.card_img_url}
             timeCreated={image.time_created}
-            refreshUrl={refreshUrl}
+            shareUrl={image.share_img_url}
+            sharedAtTime={image.share_start_time}
+            user={user}
           />
         ))
       }
