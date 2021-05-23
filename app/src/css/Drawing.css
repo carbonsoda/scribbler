@@ -1,6 +1,8 @@
 .draw-panel {
   height: 100%;
-  padding: 2rem;
+  padding: 1rem;
+  max-width: 500px;
+  display: flex column;
 }
 
 /* CANVAS */
@@ -8,6 +10,10 @@
 .canvas-draw {
   border: 1px solid #736f72;
   margin: 1.5rem 1rem;
+  max-width: 500px;
+  max-height: 500px;
+  min-width: 200px;
+  min-height: 200px;
 }
 
 /* DRAWING ACTIONS (ie undo, download)*/
@@ -24,19 +30,22 @@
 }
 
 .brush-tools {
-  display: grid;
+  display: flex;
+  flex-flow: row wrap;
   width: 80%;
-  display: grid;
   margin: auto auto;
   padding: 0 2rem;
-  grid-template-columns: 1fr 1fr;
   gap: 1rem;
-  grid-template-areas: "a c" "b c";
+  align-items: center;
 }
 
-.brush-tools>label {
+.size-and-picker {
+  display: flex;
+  flex-flow: column wrap;
+}
+
+.size-and-picker>.brush-size {
   width: 100%;
-  grid-area: a;
   place-self: center stretch;
   text-align: center;
 }
@@ -44,7 +53,6 @@
 /* CONTAINER FOR BUTTON + SWATCHES */
 
 .palette-generator {
-  grid-area: c;
   width: 9rem;
   display: flex;
   flex-direction: column;
@@ -67,7 +75,18 @@
   flex: 1 1 30px;
   margin: 4px;
   border: 0.2px solid rgb(29, 27, 27);
-  padding: 0;
   border-radius: 4px;
   cursor: pointer;
+}
+
+/* MOBILE VIEW */
+
+@media screen and (max-width: 600px) {
+  .draw-panel {
+    width: 100%;
+    padding: 1rem 0;
+  }
+  .palette-swatches {
+    flex-flow: row wrap;
+  }
 }

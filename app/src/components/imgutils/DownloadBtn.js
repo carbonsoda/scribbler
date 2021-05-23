@@ -29,7 +29,7 @@ export default function DownloadBtn({ canvas }) {
       onClick={(e) => downloadImg(e)}
       endIcon={<GetAppIcon />}
     >
-      Download
+      Save
     </ToolButton>
   );
 }

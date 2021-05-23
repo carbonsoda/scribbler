@@ -14,14 +14,14 @@ export default function LoginItems() {
 
   return (
     <div className="login-items">
-      <ToolButton className={classes.margin}>
-        <Link
-          to="/history"
-          style={{ textDecoration: 'none' }}
-        >
+      <Link
+        to="/history"
+        className={classes.link}
+      >
+        <ToolButton className={classes.margin}>
           View History
-        </Link>
-      </ToolButton>
+        </ToolButton>
+      </Link>
       <LoginBtn />
       <UserIcon user={user} />
     </div>

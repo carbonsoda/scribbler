@@ -13,6 +13,7 @@ export default function CanvasPanel({ brushSize, brushColor, canvas }) {
       brushColor={brushColor}
       lazyRadius={lazyRadius}
       brushRadius={brushSize}
+      style={{ width: '50vmin', height: '50vmin' }}
     />
   );
 }
