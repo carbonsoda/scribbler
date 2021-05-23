@@ -7,33 +7,12 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
 import copy from 'clipboard-copy';
 import TimeAgo from 'timeago-react';
 
 import { renewShareUrl } from '../apiClient';
-
-const useStyles = makeStyles({
-  root: {
-    maxWidth: '25%',
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  media: {
-    height: '80%',
-    objectFit: 'cover',
-  },
-  buttons: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  text: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
-});
+import { cardStyles } from '../assets/MUIStyles';
 
 export default function ImgCard({
   fileName, cardUrl, timeCreated, shareUrl, sharedAtTime, user,
@@ -68,7 +47,7 @@ export default function ImgCard({
     }
   };
 
-  const classes = useStyles();
+  const classes = cardStyles();
 
   return (
     <Card className={classes.root}>

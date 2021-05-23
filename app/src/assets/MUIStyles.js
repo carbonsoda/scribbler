@@ -1,5 +1,3 @@
-import React from 'react';
-
 import Button from '@material-ui/core/Button';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 
@@ -29,5 +27,26 @@ export const ToolButton = withStyles((theme) => ({
     fontFamily: 'Open Sans',
     textTransform: 'none',
     fontSize: '0.95rem',
+    margin: theme.spacing(1),
   },
 }))(Button);
+
+export const cardStyles = makeStyles({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  media: {
+    height: '80%',
+    objectFit: 'cover',
+  },
+  buttons: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  text: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+});
