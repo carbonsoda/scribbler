@@ -14,6 +14,8 @@ import TimeAgo from 'timeago-react';
 import { renewShareUrl } from '../apiClient';
 import { cardStyles } from '../assets/MUIStyles';
 
+import CopyAlert from './CopyAlert';
+
 export default function ImgCard({
   fileName, cardUrl, timeCreated, shareUrl, sharedAtTime, user,
 }) {
@@ -32,6 +34,7 @@ export default function ImgCard({
   const [activeShareUrl, setActiveShareUrl] = React.useState(shareUrl);
   const [urlTimeCreated, setUrlTimeCreated] = React.useState(new Date(sharedAtTime));
   const [expireTime, setExpireTime] = React.useState(shareExpireTime(urlTimeCreated));
+  const [urlCopied, setUrlCopied] = React.useState(false);
   const [isDemo, setIsDemo] = React.useState(false);
 
   const refreshUrl = async (e) => {
@@ -43,8 +46,10 @@ export default function ImgCard({
       setUrlTimeCreated(new Date(time));
       setExpireTime(shareExpireTime(time));
       copy(url);
+      setUrlCopied(true);
     } if (user) {
       copy(activeShareUrl);
+      setUrlCopied(true);
     }
   };
 
@@ -60,6 +65,7 @@ export default function ImgCard({
 
   return (
     <>
+      <CopyAlert urlCopied={urlCopied} />
       <Card className={classes.root}>
         <CardActionArea>
           <CardMedia
