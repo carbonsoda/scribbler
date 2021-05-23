@@ -7,6 +7,18 @@ export const useStyles = makeStyles((theme) => ({
     textDecoration: 'none',
     fontFamily: 'Raleway, Arial',
   },
+  link: {
+    color: theme.palette.getContrastText('#edeaf5'),
+    textDecoration: 'none',
+  },
+  banner: {
+    backgroundColor: 'rgba(33, 150, 243, 0.3)',
+    border: '1px solid #2196f3',
+    color: '#000000',
+    message: {
+      color: '#ffff',
+    },
+  },
 }));
 
 export const ToolButton = withStyles((theme) => ({
@@ -15,11 +27,7 @@ export const ToolButton = withStyles((theme) => ({
     backgroundColor: '#edeaf5',
     border: 'solid 1px #3D00B8',
     '&:hover': {
-      backgroundColor: '#7735e8',
-      color: theme.palette.getContrastText('#7735e8'),
-    },
-    '&a:hover': {
-      backgroundColor: '#7735e8',
+      backgroundColor: '#9e6eff',
       color: theme.palette.getContrastText('#7735e8'),
     },
     borderRadius: '.5em',
