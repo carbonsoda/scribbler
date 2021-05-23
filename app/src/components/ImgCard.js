@@ -18,7 +18,7 @@ export default function ImgCard({
   fileName, cardUrl, timeCreated, shareUrl, sharedAtTime, user,
 }) {
   // TIME SETUP
-  // TODO: Make it so it says 0 min left for expired urls instead
+  // TODO: Format expired urls to "0 min left"
   const shareExpireTime = (startTime) => {
     const current = new Date(startTime);
     return new Date(current.getTime() + 30 * 60000);
@@ -32,6 +32,7 @@ export default function ImgCard({
   const [activeShareUrl, setActiveShareUrl] = React.useState(shareUrl);
   const [urlTimeCreated, setUrlTimeCreated] = React.useState(new Date(sharedAtTime));
   const [expireTime, setExpireTime] = React.useState(shareExpireTime(urlTimeCreated));
+  const [isDemo, setIsDemo] = React.useState(false);
 
   const refreshUrl = async (e) => {
     e.preventDefault();
@@ -47,41 +48,59 @@ export default function ImgCard({
     }
   };
 
+  React.useEffect(() => {
+    if (!shareUrl || !sharedAtTime || !user) {
+      setIsDemo(true);
+    } else {
+      setIsDemo(false);
+    }
+  }, [shareUrl, sharedAtTime, user]);
+
   const classes = cardStyles();
 
   return (
-    <Card className={classes.root}>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          className={classes.media}
-          alt="A Scribble"
-          height="140"
-          image={cardUrl}
-          title={fileName}
-        />
-        <CardContent className={classes.text}>
-          <Typography variant="subtitle1" component="p">
-            Scribbled this
-            { ' ' }
-            <TimeAgo datetime={timeCreated} />
-            <br />
-            Link generated
-            { ' ' }
-            <TimeAgo datetime={sharedAtTime} />
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions className={classes.buttons}>
-        <Button
-          size="large"
-          color="primary"
-          onClick={(e) => refreshUrl(e)}
-          endIcon={<FileCopyIcon />}
-        >
-          Share your Scribble
-        </Button>
-      </CardActions>
-    </Card>
+    <>
+      <Card className={classes.root}>
+        <CardActionArea>
+          <CardMedia
+            component="img"
+            className={classes.media}
+            alt="A Scribble"
+            height="140"
+            image={cardUrl}
+            title={fileName}
+          />
+          <CardContent className={classes.text}>
+            <Typography variant="subtitle1" component="p">
+              { isDemo ? 'Example scribbled' : 'You scribbled this'}
+              { ' ' }
+              <TimeAgo datetime={timeCreated} />
+              <br />
+              {
+              isDemo ? ''
+                : (
+                  <>
+                    Link generated
+                    { ' ' }
+                    <TimeAgo datetime={urlTimeCreated} />
+                  </>
+                )
+            }
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+        <CardActions className={classes.buttons}>
+          <Button
+            size="large"
+            color="primary"
+            onClick={(e) => refreshUrl(e)}
+            endIcon={<FileCopyIcon />}
+            disabled={isDemo}
+          >
+            Share your Scribble
+          </Button>
+        </CardActions>
+      </Card>
+    </>
   );
 }
