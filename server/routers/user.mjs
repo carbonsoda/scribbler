@@ -1,20 +1,11 @@
 /* eslint-disable import/extensions */
 import express from 'express';
 
-import checkJwt from '../check-jwt.mjs';
 import * as db from '../db.mjs';
 import { demoid } from '../env.dev.mjs';
 
 const userRouter = express.Router();
 userRouter.use(express.json());
-
-userRouter.get('/public-message', (req, res) => {
-  res.status(200).send({ message: 'The API doesn\'t require an access token to share this message.' });
-});
-
-userRouter.get('/protected-message', checkJwt, (req, res) => {
-  res.status(200).send({ message: 'The API successfully validated your access token.' });
-});
 
 userRouter.post('/create', async (req, res) => {
   const { user } = req.body;
@@ -26,25 +17,27 @@ userRouter.post('/create', async (req, res) => {
 });
 
 userRouter.post('/upload', async (req, res) => {
-  const { user, fileName } = req.body;
+  const { fileName, user, url24Hr } = req.body;
 
   // TODO: wrap in try/catch
   // undefined if user already exists
   await db.createUser(user);
-  const imgName = await db.addUserImage(user.sub, fileName);
+
+  const imgName = await db.addUserImage(user.sub, fileName, url24Hr);
 
   res.status(201).json({ imgName });
 });
 
 userRouter.get('/history', async (req, res) => {
-  const { id } = req.params;
+  const { id } = req.query;
+  let history;
 
   if (id) {
-    const history = await db.getUserImages(id);
-    res.json({ history });
+    history = await db.getUserImages(id);
+  } else {
+    history = await db.getDemoImages(demoid);
   }
 
-  const history = await db.getDemoImages(demoid);
   res.json({ history });
 });
 

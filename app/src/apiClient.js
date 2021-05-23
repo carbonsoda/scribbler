@@ -1,12 +1,17 @@
+// Generates a color palette
+export const getColors = async () => {
+  const res = await fetch('/api/colors');
+  return res.json();
+};
+
 export const uploadImg = async (imgDataURL, user) => {
   const { fileName, shareUrl } = await signedImg(imgDataURL);
 
   if (user) {
-    // TODO: check and create user
-    // TODO: add user_id + fileName to images db
+    addUserImg(fileName, user);
   }
 
-  return shareUrl.json();
+  return shareUrl;
 };
 
 // handles signed access requests to AWS S3 bucket
@@ -39,37 +44,18 @@ const signedUpload = async (imgDataURL, signedURL) => {
   return result;
 };
 
-// Generates a color palette
-export const getColors = async () => {
-  const res = await fetch('/api/colors');
-  return res.json();
-};
+// Add user's new image to their image_history record
+const addUserImg = async (fileName, user) => {
+  const { url24Hr } = await fetch(`/api/image/sign-s3-share-user?fileName=${fileName}`)
+    .then((out) => out.json());
 
-export const testPing = async () => {
-  const res = await fetch('api/ping');
-  return res.json();
-};
-
-export const tokenCheck = async (token) => {
-  const res = await fetch(
-    '/api/user/protected-message',
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    },
-  );
-  return res.json();
-};
-
-export const createUser = async (user) => {
-  await fetch('/api/user/create',
+  const imgName = await fetch('/api/user/upload',
     {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ user }),
+      body: JSON.stringify({ fileName, user, url24Hr }),
     });
 };
 

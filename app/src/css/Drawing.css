@@ -17,6 +17,11 @@
   justify-content: space-between;
 }
 
+.share-url {
+  margin-top: 1rem;
+  text-align: center;
+}
+
 .brush-tools {
   display: grid;
   width: 80%;
