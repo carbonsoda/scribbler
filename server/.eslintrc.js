@@ -15,7 +15,7 @@ module.exports = {
     'plugin:import/recommended',
   ],
   rules: {
-    'no-console': 'off',
+    'no-console': 'warning',
     'import/order': [
       'error',
       {

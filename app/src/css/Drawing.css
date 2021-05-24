@@ -2,7 +2,10 @@
   height: 100%;
   padding: 1rem;
   max-width: 500px;
-  display: flex column;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 /* CANVAS */
@@ -12,8 +15,8 @@
   margin: 1.5rem 1rem;
   max-width: 500px;
   max-height: 500px;
-  min-width: 200px;
-  min-height: 200px;
+  min-width: 250px;
+  min-height: 250px;
 }
 
 /* DRAWING ACTIONS (ie undo, download)*/
@@ -21,7 +24,7 @@
 .img-utils {
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 .share-url {
@@ -32,16 +35,20 @@
 .brush-tools {
   display: flex;
   flex-flow: row wrap;
+  align-items: flex-start;
   width: 80%;
   margin: auto auto;
   padding: 0 2rem;
   gap: 1rem;
-  align-items: center;
 }
 
 .size-and-picker {
   display: flex;
   flex-flow: column wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .size-and-picker>.brush-size {
@@ -72,7 +79,8 @@
 
 .palette-swatch {
   width: 30px;
-  flex: 1 1 30px;
+  height: 30px;
+  /* flex: 1 1 30px; */
   margin: 4px;
   border: 0.2px solid rgb(29, 27, 27);
   border-radius: 4px;
@@ -81,12 +89,21 @@
 
 /* MOBILE VIEW */
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 500px) {
   .draw-panel {
     width: 100%;
     padding: 1rem 0;
   }
+  .brush-tools {
+    justify-content: center;
+  }
+  .palette-generator {
+    width: 100%;
+    align-items: center;
+  }
   .palette-swatches {
     flex-flow: row wrap;
+    max-width: 200px;
+    margin: 0;
   }
 }
