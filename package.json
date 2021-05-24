@@ -20,6 +20,9 @@
     "prettier": "prettier --write .",
     "psql": "docker-compose exec -u postgres db ./bin/ash -c 'psql ${POSTGRES_DB}'",
     "server:start": "cd server && npm start",
+    "local:server": "cd server && npx nodemon server.mjs",
+    "local:app": "cd app && npx react-scripts start",
+    "local:start": "run-p local:server local:app",
     "start": "run-p db:start server:start app:start"
   },
   "repository": {
