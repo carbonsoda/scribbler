@@ -27,8 +27,8 @@ export default function BrushTools({ onColorChange, onSizeChange }) {
           <input
             type="range"
             id="brush-size"
-            min="5"
-            max="25"
+            min="1"
+            max="30"
             value={size}
             onChange={(e) => setSize(e.target.value)}
           />

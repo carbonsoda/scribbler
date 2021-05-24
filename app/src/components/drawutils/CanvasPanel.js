@@ -4,7 +4,7 @@ import CanvasDraw from 'react-canvas-draw';
 
 export default function CanvasPanel({ brushSize, brushColor, canvas }) {
   // controls distance/length of the "lazy" pointer
-  const lazyRadius = 5;
+  const lazyRadius = 10;
 
   return (
     <CanvasDraw
