@@ -1,10 +1,13 @@
 import express from 'express';
 import got from 'got';
+import isReachable from 'is-reachable';
+
+import generateLocalPalette from './paletteBackup.mjs';
 
 const paletteGenerator = express.Router();
 paletteGenerator.use(express.json());
 
-paletteGenerator.get('/', async (req, res) => {
+const generateColormind = async () => {
   // Colormind has a random assort of color models each day
   // 'default' + 'ui' are always available models
   const colorModels = await got
@@ -25,7 +28,18 @@ paletteGenerator.get('/', async (req, res) => {
       responseType: 'json',
     });
 
-  res.json(body.result);
+  return body.result;
+};
+
+paletteGenerator.get('/', async (req, res) => {
+  const colormindReachable = await isReachable('http://colormind.io/');
+
+  if (colormindReachable) {
+    const results = await generateColormind();
+    res.json(results);
+  } else {
+    res.json(generateLocalPalette());
+  }
 });
 
 export default paletteGenerator;
