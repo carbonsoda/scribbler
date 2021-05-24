@@ -43,7 +43,7 @@ export default function ImgUtils({ canvas }) {
         >
           Undo
         </ToolButton>
-        <DownloadBtn />
+        <DownloadBtn canvas={canvas} />
         <ShareBtn uploadImg={uploadImg} />
       </div>
     </>
