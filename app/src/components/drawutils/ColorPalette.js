@@ -1,10 +1,11 @@
-/* eslint-disable no-console */
 import React from 'react';
 
 import * as apiClient from '../../apiClient';
+import { useStyles, ToolButton } from '../../assets/MUIStyles';
 
 export default function ColorPalette({ setColor }) {
   const [palette, setPalette] = React.useState([]);
+  const classes = useStyles();
 
   const generatePalette = async () => {
     // results array of 4 subarrays, each being an rgb-color
@@ -24,9 +25,12 @@ export default function ColorPalette({ setColor }) {
 
   return (
     <div className="palette-generator">
-      <button onClick={generatePalette}>
+      <ToolButton
+        className={classes.margin}
+        onClick={generatePalette}
+      >
         Generate a Color Palette
-      </button>
+      </ToolButton>
       {
         palette
           ? (

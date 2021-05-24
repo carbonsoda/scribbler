@@ -7,78 +7,106 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import FileCopyIcon from '@material-ui/icons/FileCopy';
+import copy from 'clipboard-copy';
+import TimeAgo from 'timeago-react';
 
 import { renewShareUrl } from '../apiClient';
+import { cardStyles } from '../assets/MUIStyles';
 
-const useStyles = makeStyles({
-  root: {
-    maxWidth: 345,
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  media: {
-    height: '80%',
-    objectFit: 'cover',
-  },
-  buttons: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-});
+import CopyAlert from './CopyAlert';
 
 export default function ImgCard({
   fileName, cardUrl, timeCreated, shareUrl, sharedAtTime, user,
 }) {
+  // TIME SETUP
+  // TODO: Format expired urls to "0 min left"
+  const shareExpireTime = (startTime) => {
+    const current = new Date(startTime);
+    return new Date(current.getTime() + 30 * 60000);
+  };
+  const urlExpired = () => {
+    const diff = (expireTime.getTime() - Date.now()) / 60000;
+    return Math.abs(Math.round(diff)) >= 30;
+  };
+
+  // STATE HOOKS
   const [activeShareUrl, setActiveShareUrl] = React.useState(shareUrl);
-  const [activeUrlTime, setActiveUrlTime] = React.useState(sharedAtTime);
+  const [urlTimeCreated, setUrlTimeCreated] = React.useState(new Date(sharedAtTime));
+  const [expireTime, setExpireTime] = React.useState(shareExpireTime(urlTimeCreated));
+  const [urlCopied, setUrlCopied] = React.useState(false);
+  const [isDemo, setIsDemo] = React.useState(false);
 
   const refreshUrl = async (e) => {
     e.preventDefault();
 
-    if (user) {
+    if (user && urlExpired()) {
       const { url, time } = await renewShareUrl(user.sub, fileName);
       setActiveShareUrl(url);
-      setActiveUrlTime(time);
+      setUrlTimeCreated(new Date(time));
+      setExpireTime(shareExpireTime(time));
+      copy(url);
+      setUrlCopied(true);
+    } if (user) {
+      copy(activeShareUrl);
+      setUrlCopied(true);
     }
   };
 
-  // TODO: Stylize time display
-  const classes = useStyles();
+  React.useEffect(() => {
+    if (!shareUrl || !sharedAtTime || !user) {
+      setIsDemo(true);
+    } else {
+      setIsDemo(false);
+    }
+  }, [shareUrl, sharedAtTime, user]);
+
+  const classes = cardStyles();
 
   return (
-    <Card className={classes.root}>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          className={classes.media}
-          alt="A Scribble"
-          height="140"
-          image={cardUrl}
-          title={fileName}
-        />
-        <CardContent>
-          <Typography variant="body2" component="p">
-            Time created:
-            {timeCreated}
-          </Typography>
-          <Typography variant="body2" component="p">
-            Share it:
-            { ' ' }
-            <a href={activeShareUrl}>click</a>
-            <br />
-            Active since
-            {' '}
-            { activeUrlTime }
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions className={classes.buttons}>
-        <Button size="medium" color="primary" onClick={(e) => refreshUrl(e)}>
-          Share
-        </Button>
-      </CardActions>
-    </Card>
+    <>
+      <CopyAlert urlCopied={urlCopied} />
+      <Card className={classes.root}>
+        <CardActionArea>
+          <CardMedia
+            component="img"
+            className={classes.media}
+            alt="A Scribble"
+            height="140"
+            image={cardUrl}
+            title={fileName}
+          />
+          <CardContent className={classes.text}>
+            <Typography variant="subtitle1" component="p">
+              { isDemo ? 'Example scribbled' : 'You scribbled this'}
+              { ' ' }
+              <TimeAgo datetime={timeCreated} />
+              <br />
+              {
+              isDemo ? ''
+                : (
+                  <>
+                    Link generated
+                    { ' ' }
+                    <TimeAgo datetime={urlTimeCreated} />
+                  </>
+                )
+            }
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+        <CardActions className={classes.buttons}>
+          <Button
+            size="large"
+            color="primary"
+            onClick={(e) => refreshUrl(e)}
+            endIcon={<FileCopyIcon />}
+            disabled={isDemo}
+          >
+            Share your Scribble
+          </Button>
+        </CardActions>
+      </Card>
+    </>
   );
 }

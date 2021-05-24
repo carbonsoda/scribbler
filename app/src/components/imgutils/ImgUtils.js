@@ -1,37 +1,50 @@
 import React from 'react';
 
 import { useAuth0 } from '@auth0/auth0-react';
+import ClearIcon from '@material-ui/icons/Clear';
+import UndoIcon from '@material-ui/icons/Undo';
+import copy from 'clipboard-copy';
 
 import * as apiClient from '../../apiClient';
+import { useStyles, ToolButton } from '../../assets/MUIStyles';
 
 import DownloadBtn from './DownloadBtn';
 import ShareBtn from './ShareBtn';
 
 export default function ImgUtils({ canvas }) {
-  // TODO: stylize url
-  const [shareUrl, setShareUrl] = React.useState('');
   const { user } = useAuth0();
+  const classes = useStyles();
 
   const uploadImg = async () => {
     const drawnLayer = canvas.current.canvasContainer.children[1].toDataURL('image/png');
 
-    setShareUrl(await apiClient.uploadImg(drawnLayer, user));
+    const url = await apiClient.uploadImg(drawnLayer, user);
+    copy(url);
   };
-
-  React.useEffect(() => {
-    setShareUrl('');
-  }, []);
 
   return (
     <>
       <div className="img-utils">
-        <button onClick={() => canvas.current.clear()}>Clear</button>
-        <button onClick={() => canvas.current.undo()}>Undo</button>
-        <DownloadBtn canvas={canvas} />
+        <ToolButton
+          variant="contained"
+          color="primary"
+          className={classes.margin}
+          onClick={() => canvas.current.clear()}
+          endIcon={<ClearIcon />}
+        >
+          Clear
+        </ToolButton>
+        <ToolButton
+          variant="contained"
+          color="primary"
+          className={classes.margin}
+          onClick={() => canvas.current.undo()}
+          endIcon={<UndoIcon />}
+        >
+          Undo
+        </ToolButton>
+        <DownloadBtn />
         <ShareBtn uploadImg={uploadImg} />
-      </div>
-      <div className="share-url">
-        {shareUrl ? <a href={shareUrl}> Link to Your Scribble </a> : ''}
       </div>
     </>
   );

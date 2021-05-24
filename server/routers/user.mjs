@@ -21,7 +21,6 @@ userRouter.post('/upload', async (req, res) => {
     fileName, user, shareUrl, url24Hr,
   } = req.body;
 
-  // TODO: wrap in try/catch
   // undefined if user already exists
   await db.createUser(user);
 

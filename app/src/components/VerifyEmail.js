@@ -1,21 +1,37 @@
 import React from 'react';
 
 import { useAuth0 } from '@auth0/auth0-react';
+import { Alert } from '@material-ui/lab';
+
+import { useStyles } from '../assets/MUIStyles';
 
 export default function VerifyEmail() {
-  const [verifyMsg, setVerifyMsg] = React.useState('');
+  const [unverified, setUnverified] = React.useState(false);
   const { user } = useAuth0();
+  const classes = useStyles();
 
   React.useEffect(() => {
     if (user && !user.email_verified) {
-      setVerifyMsg('Please check your email to verify your account');
+      setUnverified(true);
     } else {
-      setVerifyMsg('');
+      setUnverified(false);
     }
   }, [user]);
   return (
-    <div className="verify-email">
-      { verifyMsg }
-    </div>
+    <>
+      {
+        unverified ? (
+          <Alert
+            severity="info"
+            variant="filled"
+            className={classes.banner}
+          >
+            Verify your email to keep track of your shared scribbles
+          </Alert>
+        )
+          : ''
+      }
+
+    </>
   );
 }
