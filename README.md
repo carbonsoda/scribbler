@@ -25,7 +25,7 @@ Quickly scribble and share an idea with others with a link; after 30 minutes, th
 
 My communication style tends to be very visual, so in-person I use a lot of sticky-notes while I talk. It's not as simple virtually; I have to open something like MS-Paint to doodle, save the file, and then upload it somewhere.
 
-Over the years, my doodles are scattered around my pc. If I upload them, some websites retain images even after a user deletes the post, aka the link remains active even when I think it's gone. I want to streamline the doodle-sharing process, while giving users control over their data.
+Over the years, my doodles are scattered around my pc. If I upload them, some websites retain images even after a user deletes the post, aka the link remains active for anyone, even when my post is gone. I want to streamline the doodle-sharing process, while giving users control over their data.
 
 ## Features
 
