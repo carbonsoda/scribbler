@@ -18,17 +18,13 @@
 
 
 ## About
-
-[![Scribbler Homepage][./docs/images/home.png]](http://scribblering.herokuapp.com/)
-
+<div align="center"> <img width="600" alt="Scribbler Homepage" src="docs/images/home.png" href="http://scribblering.herokuapp.com/"> </div>
 
 Quickly scribble and share an idea with others with a link; after 30 minutes, the image is permanently deleted. Just like a scrap of paper.
 
 My communication style tends to be very visual, so in-person I use a lot of sticky-notes while I talk. It's not as simple virtually; I have to open something like MS-Paint to doodle, save the file, and then upload it somewhere.
 
-Over the years, my doodle files are scattered around. Some websites retain images even after a user deletes the post, aka the link remains active, so I have to mindful if I go that route.
-
-I want to streamline the doodle-sharing process, while giving users control over their data.
+Over the years, my doodle files are scattered around. Some websites retain images even after a user deletes the post, aka the link remains active, so I have to mindful if I go that route. I want to streamline the doodle-sharing process, while giving users control over their data.
 
 ## Built With
 Scribbler was built using a PostgreSQL, Express, React, and Node (PERN) stack. 
