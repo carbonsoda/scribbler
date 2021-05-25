@@ -12,9 +12,10 @@
 
 ## Contents
 
-  - [Description](#description)
-    - [Built with](#built-with)
-  - [Installation](#installation)
+  - [About](#about)
+  - [Features](#features)
+  - [Built with](#built-with)
+  - [Getting Started](#getting-started)
 
 
 ## About
@@ -26,6 +27,18 @@ My communication style tends to be very visual, so in-person I use a lot of stic
 
 Over the years, my doodles are scattered around my pc. If I upload them, some websites retain images even after a user deletes the post, aka the link remains active even when I think it's gone. I want to streamline the doodle-sharing process, while giving users control over their data.
 
+## Features
+
+- Create drawings
+  - Change the brush size, color, and opacity
+  - Generate color palettes/swatches
+- Download your scribble as a transparent `.png` file
+- Generate a link to share your scribble for 30 minutes, before it deactivates
+- As a registered user:
+  - View your scribbles from the last 24 hours
+  - Generate a new 30-minute link to your scribble, after the previous one expired
+
+
 ## Built With
 Scribbler was built using a PostgreSQL, Express, React, and Node (PERN) stack. 
 
@@ -33,6 +46,7 @@ It also uses
 * [AWS S3](https://docs.aws.amazon.com/s3/index.html)
 * [Auth0](https://auth0.com/docs/get-started)
 * [Colormind](http://colormind.io/api-access/)
+
 ## Getting Started
 
 ### Prerequisites
