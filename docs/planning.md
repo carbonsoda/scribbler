@@ -17,11 +17,13 @@ Normally you have to first open or install a drawing app, save it locally, and t
 
 Personally I often scribble on a napkins or sticky-notes when chatting with others, but virtually, it's not as simple. I want to streamline the doodle-sharing process, while also giving users control over their data.
 
+
+
 ![mockup of main page](./images/scribbler-view-main.png)
 
 ## Technology
 
-- React.JS 
+- React
 - PostgreSQL
 - Express
 - Node.JS

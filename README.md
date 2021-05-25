@@ -1,52 +1,93 @@
-# Scribbler
+<p align="center">
+  <h1 align="center">Scribbler</h1>
 
-*[Live view](https://www.scribbler.dev/)*
+  <p align="center">
+    <a href="http://scribblering.herokuapp.com/">View Demo</a>
+    ·
+    <a href="https://github.com/carbonsoda/scribbler/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/carbonsoda/scribbler/issues">Request Feature</a>
+  </p>
+</p>
 
 ## Contents
 
   - [Description](#description)
-  - [Technology](#technology)
+    - [Built with](#built-with)
   - [Installation](#installation)
-  - [Progress](#progress)
 
 
-## Description
+## About
 
-Scribbler lets folks quickly scribble an idea and share it with others via temporary link; after 30 minutes, the image is permanently deleted.
+[![Scribbler Homepage][./docs/images/home.png]](http://scribblering.herokuapp.com/)
 
-## Technology
-This project uses a PostgreSQL, Express, React, and Node.JS (PERN) stack. It is hosted on Heroku and will also use the AWS S3 Buckets and Colormind APIs.
 
-## Installation
- 
+Quickly scribble and share an idea with others with a link; after 30 minutes, the image is permanently deleted. Just like a scrap of paper.
+
+My communication style tends to be very visual, so in-person I use a lot of sticky-notes while I talk. It's not as simple virtually; I have to open something like MS-Paint to doodle, save the file, and then upload it somewhere.
+
+Over the years, my doodle files are scattered around. Some websites retain images even after a user deletes the post, aka the link remains active, so I have to mindful if I go that route.
+
+I want to streamline the doodle-sharing process, while giving users control over their data.
+
+## Built With
+Scribbler was built using a PostgreSQL, Express, React, and Node (PERN) stack. 
+
+It also uses
+* [AWS S3](https://docs.aws.amazon.com/s3/index.html)
+* [Auth0](https://auth0.com/docs/get-started)
+* [Colormind](http://colormind.io/api-access/)
+## Getting Started
+
 ### Prerequisites
+**Docker**
 
-#### Docker
+This project relies on Docker for to run the PostgreSQL server for registered users. To use those features, you must install Docker first before continuing.
 
-This project relies on Docker to run the PostgreSQL server. You must install
-Docker first before continuing.
+Windows:
+- Follow Microsoft's instructions to install [WSL](https://docs.microsoft.com/en-us/windows/wsl/install-win10) and [Docker](https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-containers#install-docker-desktop).
 
-Use one of these methods:
-
-- Use [Homebrew](https://docs.brew.sh/Installation) on macOS: `brew install --cask docker`
+MacOS:
+- Use [Homebrew](https://docs.brew.sh/Installation): `brew install --cask docker`
 - [Follow the instructions on the Docker website](https://www.docker.com/)
 
-Once you've installed Docker Desktop, you'll need to launch the app. On macOS, it's located in `/Applications/Docker`.
+Launch Docker Desktop once it is installed. 
 
-#### Node
+**Node**
 
 You'll need to install Node v14 or above. [`nvm`](https://github.com/nvm-sh/nvm) is highly recommended.
 
-### Set Up the Development Environment
+### Installation
 
-#### Install NPM Packages
+1. Clone the repo:
+   ```sh
+   git clone https://github.com/carbonsoda/scribbler.git
+   ```
+2. Install all NPM packages using this in the root directory:
+   ```sh
+   npm install
+   ```
+3. Database setup:
+   1. Copy the root example environment file
 
-All the required packages can be installed using the following command in the root directory:
-```sh
-npm install
-```
+   ```sh
+   cp .env.example .env
+   ```
+   2. You can choose to edit `.env` or just use as-is.
+   3. Run the following to setup the database with the seed file:
+   ```sh
+   npm run db:init
+   ```
+
+Start the app and view it at <http://localhost:3000> by using:
+   ```sh
+   npm start
+   ```
+Shut Down the Express and React development servers using `Ctrl-C` .
+
 
 #### Set Up React client for `auth0`
+If you want to try it with Auth0, the frontend needs to be setup with the following:
 
 1. Copy the app's example environment file
 
@@ -58,51 +99,5 @@ npm install
    - These can be obtained by signing up for an Auth0 account and [Registering a Single-Page Web Application](https://auth0.com/docs/get-started) in order to get these values.
    - This [graphic](https://images.ctfassets.net/23aumh6u8s0i/1DyyZTcfbJHw577T6K2KZk/a8cabcec991c9ed33910a23836e53b76/auth0-application-settings) from [Auth0's guide](https://auth0.com/blog/complete-guide-to-react-user-authentication/#Connect-React-with-Auth0) may be helpful to locating them. 
 
-#### Set Up `postgres` User Password and Database Name
 
-We need to set up couple pieces of information in order to start a new
-PostgreSQL server instance, as well as to connect to it later from the Express
-server.
 
-1. Copy the root example environment file
-
-   ```sh
-   cp .env.example .env
-   ```
-
-2. You can choose to edit `.env` or just use as-is.
-
-[See the PostgreSQL Docker image documentation for more information](https://hub.docker.com/_/postgres).
-
-#### Initialize the Database
-
-Let's set up the database server, create the application database, and seed it
-with some data. You only need to do this the first time you set up your
-development environment.
-
-```sh
-npm run db:init
-```
-
-ℹ️ If you ever need to start over with the database, you can run this command
-again which will delete your existing data and start from scratch.
-
-### Start the Development Environment
-
-```sh
-npm start
-```
-
-Visit <http://localhost:3000>.
-
-### Shut Down the Development Environment
-
-1. `Ctrl-C` to stop the Express and React development servers.
-1. `npm run db:stop` to stop and destroy the PostgreSQL Docker container. Don't
-   worry, your data is safe.
-
-### Need to Start a `psql` Session?
-
-```sh
-npm run psql
-```
