@@ -9,7 +9,7 @@ import VerifyEmail from './components/VerifyEmail';
 import History from './routes/History';
 import Home from './routes/Home';
 
-import './css/App.css';
+import './assets/css/App.css';
 
 export default function App() {
   const { isLoading } = useAuth0();

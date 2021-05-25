@@ -10,7 +10,7 @@
 }
 
 body {
-  background: url("../assets/beige-paper.png") var(--white);
+  background: url("../beige-paper.png") var(--white);
   background-blend-mode: multiply;
 }
 
